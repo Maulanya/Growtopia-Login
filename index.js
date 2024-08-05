@@ -48,7 +48,7 @@ app.post("/player/validate/close", function (req, res) {
   res.send("<script>window.close();</script>");
 });
 
-app.get("/", (req, req) => {
+app.get("/", (req, res) => {
   res.send("Hello World");
 });
 
