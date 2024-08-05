@@ -34,7 +34,13 @@ app.post("/player/growid/login/validate", (req, res) => {
   ).toString("base64");
 
   res.send(
-    `{"status":"success","message":"Account Validated.","token":"${token}","url":"","accountType":"growtopia"}`
+    JSON.stringify({
+      status: "success",
+      message: "Account Validated.",
+      token,
+      url: "",
+      accountType: "growtopia",
+    })
   );
 });
 
@@ -42,8 +48,12 @@ app.post("/player/validate/close", function (req, res) {
   res.send("<script>window.close();</script>");
 });
 
-app.get("/", function (req, res) {
-  res.send("Hello World!");
+app.get("/", (req, req) => {
+  res.send("Hello World");
+});
+
+app.use(function (req, res) {
+  res.status(404).send("Not Found");
 });
 
 app.listen(5000, function () {
