@@ -4,76 +4,83 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
-    <link
-      rel="icon"
-      type="image/png"
-      href="https://s3.eu-west-1.amazonaws.com/cdn.growtopiagame.com/website/resources/assets/images/growtopia.ico"
-      sizes="16x16"
-    />
-    <link
-      rel="stylesheet"
-      href="https://s3.eu-west-1.amazonaws.com/cdn.growtopiagame.com/website/resources/assets/css/faq-main.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://s3.eu-west-1.amazonaws.com/cdn.growtopiagame.com/website/resources/assets/css/shop-custom.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://s3.eu-west-1.amazonaws.com/cdn.growtopiagame.com/website/resources/assets/css/ingame-custom.css"
-    />
     <style>
       body {
-        background-color: #f4f4f4;
-        font-family: Arial, sans-serif;
+        background-color: transparent; /* Dark background for better contrast */
+        font-family: "Arial", sans-serif;
         display: flex;
         justify-content: center;
         align-items: center;
         height: 100vh;
         margin: 0;
+        color: #e2e8f0; /* Light text color for readability */
       }
       .container {
-        max-width: 400px;
         width: 100%;
-        background: #fff;
+        max-width: 400px;
+        background: #0f172a;
         padding: 20px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        border-radius: 12px;
+        border: 1px solid #1e293b; /* Subtle border for definition */
+        box-sizing: border-box; /* Ensure padding is included in width */
       }
       h2 {
         margin-bottom: 20px;
         text-align: center;
+        color: #ffffff;
+        font-size: 24px;
       }
       .form-group {
         margin-bottom: 15px;
       }
       .form-control {
         width: 100%;
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
+        border-radius: 8px;
+        padding: 12px;
+        border: 1px solid #334155;
+        background: #1f2937;
+        color: #e2e8f0;
+        box-sizing: border-box; /* Ensure padding is included in width */
+      }
+      .form-control::placeholder {
+        color: #9ca3af; /* Placeholder color */
       }
       .btn-primary {
         display: block;
         width: 100%;
-        padding: 10px;
+        padding: 12px;
         border: none;
-        border-radius: 4px;
-        background-color: #007bff;
-        color: #fff;
+        border-radius: 8px;
+        background-color: #3b82f6; /* Primary blue color */
+        color: #ffffff;
         font-size: 16px;
         cursor: pointer;
+        transition: background-color 0.3s ease;
+        box-sizing: border-box; /* Ensure padding is included in width */
       }
       .btn-primary:hover {
-        background-color: #0056b3;
+        background-color: #2563eb; /* Darker blue for hover effect */
       }
       .forgot-password {
         text-align: center;
-        margin: 10px 0;
+        margin: 15px 0;
+        background-color: #374151; /* Darker background for the link section */
+        border-radius: 8px;
+        padding: 10px;
+        box-sizing: border-box; /* Ensure padding is included in width */
       }
       .forgot-password a {
-        color: #007bff;
+        color: #60a5fa; /* Light blue color */
         text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+      }
+      .forgot-password a img {
+        width: 24px;
+        height: 24px;
       }
       .forgot-password a:hover {
         text-decoration: underline;
@@ -108,13 +115,15 @@
             placeholder="Your GrowID Password *"
             name="password"
             type="password"
-            value=""
           />
         </div>
         <div class="form-group forgot-password">
-          <a href="https://gg.gg/venturaps" target="_blank"
-            >Need Help? Join our Discord!</a
-          >
+          <a href="https://gg.gg/venturaps" target="_blank">
+            <img src="../../assets/discord.png" alt="Discord Icon" />
+            <div>
+              <p>Need Help?</p>
+            </div>
+          </a>
         </div>
         <div class="form-group">
           <input class="btn-primary" type="submit" value="Log in" />
