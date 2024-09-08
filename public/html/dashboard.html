@@ -144,7 +144,7 @@
                                         type="button"
                                         value="Register"
                                         style="margin-top: 10px"
-                                        onclick="window.close();"
+                                        onclick="closePage()"
                                       />
                                     </div>
                                   </form>
@@ -169,13 +169,17 @@
   <!-- boostrap javascript -->
   <script src="https://s3.eu-west-1.amazonaws.com/cdn.growtopiagame.com/website/resources/vendors/bootstrap/javascripts/bootstrap.min.js"></script>
   <script>
-    // function closePage() {
-    //   $.post("http://localhost:5500/player/validate/close", function () {
-    //     window.close();
-    //   }).fail(function () {
-    //     alert("Failed to close page");
-    //   });
-    // }
+    function closePage() {
+      $.post(
+        "https://growtopia-login.vercel.app/player/validate/close",
+        function () {
+          window.close();
+        }
+      ).fail(function () {
+        alert("Failed to close page");
+      });
+    }
+
     let clicked = false;
     $("a").click(function () {
       if (clicked === false) {
