@@ -53,7 +53,10 @@ app.post("/player/validate/close", function (req, res) {
   ).toString("base64");
   res.send(
     JSON.stringify({
+      status: "success",
+      message: "Account Validated.",
       token,
+      url: "",
       accountType: "growtopia",
     })
   );
