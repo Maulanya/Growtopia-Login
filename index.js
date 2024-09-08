@@ -45,7 +45,18 @@ app.post("/player/growid/login/validate", (req, res) => {
 });
 
 app.post("/player/validate/close", function (req, res) {
-  res.send("<script>window.close();</script>");
+  const growId = req.body.growId;
+  const password = req.body.password;
+
+  const token = Buffer.from(
+    `_token=&growId=${growId}&password=${password}`
+  ).toString("base64");
+  res.send(
+    JSON.stringify({
+      token,
+      accountType: "growtopia",
+    })
+  );
 });
 
 app.get("/", (req, res) => {
