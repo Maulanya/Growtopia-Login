@@ -24,8 +24,6 @@ app.post("/player/login/dashboard", (req, res) => {
 });
 
 app.post("/player/growid/login/validate", (req, res) => {
-  // Extracting data from the request body
-  const _token = req.body._token;
   const growId = req.body.growId;
   const password = req.body.password;
 
@@ -33,24 +31,6 @@ app.post("/player/growid/login/validate", (req, res) => {
     `_token=&growId=${growId}&password=${password}`
   ).toString("base64");
 
-  res.send(
-    JSON.stringify({
-      status: "success",
-      message: "Account Validated.",
-      token,
-      url: "",
-      accountType: "growtopia",
-    })
-  );
-});
-
-app.post("/player/validate/close", function (req, res) {
-  const growId = req.body.growId;
-  const password = req.body.password;
-
-  const token = Buffer.from(
-    `_token=&growId=${growId}&password=${password}`
-  ).toString("base64");
   res.send(
     JSON.stringify({
       status: "success",
