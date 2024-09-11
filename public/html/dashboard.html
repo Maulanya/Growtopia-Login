@@ -151,6 +151,9 @@
       function loadSavedData() {
         const savedGrowId = localStorage.getItem("growId");
         const savedPassword = localStorage.getItem("password");
+        if (savedGrowId || savedPassword) {
+          document.getElementById("saveddata").checked;
+        }
         if (savedGrowId) {
           document.getElementById("login-name").value = savedGrowId;
         }
