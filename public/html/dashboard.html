@@ -96,6 +96,7 @@
     <div class="container">
       <h2>Log in with your GrowID</h2>
       <form
+        id="login-form"
         method="POST"
         action="/player/growid/login/validate"
         accept-charset="UTF-8"
@@ -136,10 +137,46 @@
             </div>
           </a>
         </div>
+        <div style="margin-block: 10px">
+          <input type="checkbox" id="saveddata" name="saveddata" value="true" />
+          <label for="saveddata">Keep me logged in</label>
+        </div>
         <div class="form-group">
           <input class="btn-primary" type="submit" value="Log in" />
         </div>
       </form>
     </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("login-form");
+        const saveddataCheckbox = document.getElementById("saveddata");
+        const growIdInput = document.getElementById("login-name");
+        const passwordInput = document.getElementById("password");
+
+        // Check localStorage for saved data
+        if (
+          localStorage.getItem("growId") &&
+          localStorage.getItem("password")
+        ) {
+          growIdInput.value = localStorage.getItem("growId");
+          passwordInput.value = localStorage.getItem("password");
+
+          // Automatically submit the form if saved data is available
+          form.submit();
+        }
+
+        // Save data to localStorage when checkbox is checked
+        saveddataCheckbox.addEventListener("change", function () {
+          if (this.checked) {
+            localStorage.setItem("growId", growIdInput.value);
+            localStorage.setItem("password", passwordInput.value);
+          } else {
+            localStorage.removeItem("growId");
+            localStorage.removeItem("password");
+          }
+        });
+      });
+    </script>
   </body>
 </html>
