@@ -146,37 +146,44 @@
         </div>
       </form>
     </div>
-
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const form = document.getElementById("login-form");
-        const saveddataCheckbox = document.getElementById("saveddata");
-        const growIdInput = document.getElementById("login-name");
-        const passwordInput = document.getElementById("password");
-
-        // Check localStorage for saved data
-        if (
-          localStorage.getItem("growId") &&
-          localStorage.getItem("password")
-        ) {
-          growIdInput.value = localStorage.getItem("growId");
-          passwordInput.value = localStorage.getItem("password");
-
-          // Automatically submit the form if saved data is available
-          form.submit();
+      // Function to load saved data
+      function loadSavedData() {
+        const savedGrowId = localStorage.getItem("growId");
+        const savedPassword = localStorage.getItem("password");
+        if (savedGrowId) {
+          document.getElementById("login-name").value = savedGrowId;
         }
+        if (savedPassword) {
+          document.getElementById("password").value = savedPassword;
+        }
+      }
 
-        // Save data to localStorage when checkbox is checked
-        saveddataCheckbox.addEventListener("change", function () {
-          if (this.checked) {
-            localStorage.setItem("growId", growIdInput.value);
-            localStorage.setItem("password", passwordInput.value);
-          } else {
-            localStorage.removeItem("growId");
-            localStorage.removeItem("password");
-          }
-        });
-      });
+      // Function to save data
+      function saveData(e) {
+        const keepLoggedIn = document.getElementById("saveddata").checked;
+        if (keepLoggedIn) {
+          localStorage.setItem(
+            "growId",
+            document.getElementById("login-name").value
+          );
+          localStorage.setItem(
+            "password",
+            document.getElementById("password").value
+          );
+        } else {
+          localStorage.removeItem("growId");
+          localStorage.removeItem("password");
+        }
+      }
+
+      // Load saved data on page load
+      document.addEventListener("DOMContentLoaded", loadSavedData);
+
+      // Save data when form is submitted
+      document
+        .getElementById("login-form")
+        .addEventListener("submit", saveData);
     </script>
   </body>
 </html>
