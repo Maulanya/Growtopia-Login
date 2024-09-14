@@ -151,9 +151,14 @@
       function loadSavedData() {
         const savedGrowId = localStorage.getItem("growId");
         const savedPassword = localStorage.getItem("password");
-        if (savedGrowId || savedPassword) {
-          document.getElementById("saveddata").checked;
+        const savedCheck = localStorage.getItem("savedCheck"); // Load checkbox status
+
+        // If savedCheck is true, make sure the checkbox is checked
+        if (savedCheck === "true") {
+          document.getElementById("saveddata").checked = true;
         }
+
+        // Fill in saved GrowID and password if they exist
         if (savedGrowId) {
           document.getElementById("login-name").value = savedGrowId;
         }
@@ -165,6 +170,8 @@
       // Function to save data
       function saveData(e) {
         const keepLoggedIn = document.getElementById("saveddata").checked;
+
+        // Save GrowID and password only if the checkbox is checked
         if (keepLoggedIn) {
           localStorage.setItem(
             "growId",
@@ -174,9 +181,11 @@
             "password",
             document.getElementById("password").value
           );
+          localStorage.setItem("savedCheck", "true"); // Save checkbox status
         } else {
           localStorage.removeItem("growId");
           localStorage.removeItem("password");
+          localStorage.setItem("savedCheck", "false"); // Uncheck and remove data
         }
       }
 
