@@ -23,6 +23,11 @@ app.post("/player/login/dashboard", (req, res) => {
   res.sendFile(__dirname + "/public/html/dashboard.html");
 });
 
+app.get("/player/login/dashboard", (req, res) => {
+  const lastPath = req.session.lastPath || "No previous path";
+  res.send(`Last path was: ${lastPath}`);
+});
+
 app.post("/player/growid/login/validate", (req, res) => {
   const growId = req.body.growId;
   const password = req.body.password;
