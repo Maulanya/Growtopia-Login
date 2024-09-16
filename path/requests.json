@@ -1,17 +1,1 @@
-[
-  {
-    "method": "POST",
-    "url": "/player/login/dashboard",
-    "timestamp": "2024-09-16T13:01:39.318Z"
-  },
-  {
-    "method": "POST",
-    "url": "/player/login/dashboard",
-    "timestamp": "2024-09-16T13:04:57.174Z"
-  },
-  {
-    "method": "POST",
-    "url": "/player",
-    "timestamp": "2024-09-16T13:05:10.531Z"
-  }
-]
+
