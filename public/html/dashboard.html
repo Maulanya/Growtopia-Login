@@ -6,14 +6,14 @@
     <title>Dashboard</title>
     <style>
       body {
-        background-color: transparent;
+        background-color: transparent; /* Dark background for better contrast */
         font-family: "Arial", sans-serif;
         display: flex;
         justify-content: center;
         align-items: center;
         height: 100vh;
         margin: 0;
-        color: #e2e8f0;
+        color: #e2e8f0; /* Light text color for readability */
       }
       .container {
         width: 100%;
@@ -22,8 +22,8 @@
         padding: 20px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         border-radius: 12px;
-        border: 1px solid #1e293b;
-        box-sizing: border-box;
+        border: 1px solid #1e293b; /* Subtle border for definition */
+        box-sizing: border-box; /* Ensure padding is included in width */
       }
       h2 {
         margin-bottom: 20px;
@@ -41,10 +41,10 @@
         border: 1px solid #334155;
         background: #1f2937;
         color: #e2e8f0;
-        box-sizing: border-box;
+        box-sizing: border-box; /* Ensure padding is included in width */
       }
       .form-control::placeholder {
-        color: #9ca3af;
+        color: #9ca3af; /* Placeholder color */
       }
       .btn-primary {
         display: block;
@@ -52,25 +52,26 @@
         padding: 12px;
         border: none;
         border-radius: 8px;
-        background-color: #3b82f6;
+        background-color: #3b82f6; /* Primary blue color */
         color: #ffffff;
         font-size: 16px;
         cursor: pointer;
         transition: background-color 0.3s ease;
-        box-sizing: border-box;
+        box-sizing: border-box; /* Ensure padding is included in width */
       }
       .btn-primary:hover {
-        background-color: #2563eb;
+        background-color: #2563eb; /* Darker blue for hover effect */
       }
       .forgot-password {
         text-align: center;
         margin: 15px 0;
-        background-color: #374151;
+        background-color: #374151; /* Darker background for the link section */
         border-radius: 8px;
-        box-sizing: border-box;
+        /* padding: 10px; */
+        box-sizing: border-box; /* Ensure padding is included in width */
       }
-      a {
-        color: #60a5fa;
+      .forgot-password a {
+        color: #60a5fa; /* Light blue color */
         text-decoration: none;
         display: flex;
         align-items: center;
@@ -84,41 +85,10 @@
       .forgot-password a:hover {
         text-decoration: underline;
       }
+
       #create-account {
         color: #60a5fa;
         font-size: small;
-      }
-
-      /* Media query for landscape mode */
-      @media (orientation: landscape) {
-        body {
-          flex-direction: row;
-          height: max-content;
-          justify-content: flex-start;
-        }
-
-        .container {
-          max-width: 100%; /* Increase max width in landscape */
-          padding: 0; /* Increase padding for a better look */
-        }
-
-        h2 {
-          margin-bottom: 10px;
-          font-size: 28px; /* Larger font size for landscape */
-        }
-
-        .form-control {
-          padding: 16px; /* Increase padding for inputs */
-          font-size: 18px; /* Larger text size */
-        }
-
-        .btn-primary {
-          padding: 5px; /* Larger button size */
-          font-size: 18px;
-        }
-        .forgot-password {
-          display: none;
-        }
       }
     </style>
   </head>
@@ -167,7 +137,6 @@
             </div>
           </a>
         </div>
-        <a href="https://discord.gg/mJBUQA7uuX">Need Help?</a>
         <div style="margin-block: 10px">
           <input type="checkbox" id="saveddata" name="saveddata" value="true" />
           <label for="saveddata">Keep me logged in</label>
@@ -196,30 +165,33 @@
       }
 
       function saveData(e) {
-        const keepLoggedIn = document.getElementById("saveddata").checked;
+        try {
+          const keepLoggedIn = document.getElementById("saveddata").checked;
 
-        if (keepLoggedIn) {
-          localStorage.setItem(
-            "growId",
-            document.getElementById("login-name").value
-          );
-          localStorage.setItem(
-            "password",
-            document.getElementById("password").value
-          );
-          localStorage.setItem("savedCheck", "true");
-        } else {
-          localStorage.removeItem("growId");
-          localStorage.removeItem("password");
-          localStorage.setItem("savedCheck", "false");
+          if (keepLoggedIn) {
+            localStorage.setItem(
+              "growId",
+              document.getElementById("login-name").value
+            );
+            localStorage.setItem(
+              "password",
+              document.getElementById("password").value
+            );
+            localStorage.setItem("savedCheck", "true");
+          } else {
+            localStorage.removeItem("growId");
+            localStorage.removeItem("password");
+            localStorage.setItem("savedCheck", "false");
+          }
+        } catch (error) {
+          console.error("Error saving data:", error);
         }
       }
 
       document.addEventListener("DOMContentLoaded", loadSavedData);
 
-      document
-        .getElementById("login-form")
-        .addEventListener("submit", saveData);
+      document.getElementById("login-form");
+      // .addEventListener("submit", saveData);
     </script>
   </body>
 </html>
