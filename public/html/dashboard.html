@@ -161,22 +161,26 @@
       }
 
       function saveData(e) {
-        const keepLoggedIn = document.getElementById("saveddata").checked;
+        try {
+          const keepLoggedIn = document.getElementById("saveddata").checked;
 
-        if (keepLoggedIn) {
-          localStorage.setItem(
-            "growId",
-            document.getElementById("login-name").value
-          );
-          localStorage.setItem(
-            "password",
-            document.getElementById("password").value
-          );
-          localStorage.setItem("savedCheck", "true");
-        } else {
-          localStorage.removeItem("growId");
-          localStorage.removeItem("password");
-          localStorage.setItem("savedCheck", "false");
+          if (keepLoggedIn) {
+            localStorage.setItem(
+              "growId",
+              document.getElementById("login-name").value
+            );
+            localStorage.setItem(
+              "password",
+              document.getElementById("password").value
+            );
+            localStorage.setItem("savedCheck", "true");
+          } else {
+            localStorage.removeItem("growId");
+            localStorage.removeItem("password");
+            localStorage.setItem("savedCheck", "false");
+          }
+        } catch (error) {
+          console.error("Error saving data:", error);
         }
       }
 
