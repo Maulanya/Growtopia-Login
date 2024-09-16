@@ -19,9 +19,9 @@ app.use(function (req, res, next) {
 
 app.use(express.json());
 
-app.post("/player/login/dashboard", (req, res) => {
-  res.sendFile(__dirname + "/public/html/dashboard.html");
-});
+// app.post("/player/login/dashboard", (req, res) => {
+//   res.sendFile(__dirname + "/public/html/dashboard.html");
+// });
 
 app.get("/player/login/dashboard", (req, res) => {
   const lastPath = req.session.lastPath || "No previous path";
