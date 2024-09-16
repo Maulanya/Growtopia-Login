@@ -1,5 +1,7 @@
 const express = require("express");
 const app = express();
+const fs = require("fs");
+const path = require("path");
 const bodyParser = require("body-parser");
 
 app.use(function (req, res, next) {
@@ -12,8 +14,30 @@ app.use(function (req, res, next) {
 });
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(function (req, res, next) {
-  res.send(req.method, req.url);
+app.use((req, res, next) => {
+  const log = {
+    method: req.method,
+    url: req.url,
+    timestamp: new Date().toISOString(),
+  };
+
+  const logFilePath = path.join(process.cwd(), "path", "requests.json");
+
+  fs.readFile(logFilePath, "utf8", (err, data) => {
+    let logs = [];
+    if (!err && data) {
+      logs = JSON.parse(data);
+    }
+
+    logs.push(log);
+
+    fs.writeFile(logFilePath, JSON.stringify(logs, null, 2), (err) => {
+      if (err) {
+        console.error("Error writing to requests.json:", err);
+      }
+    });
+  });
+
   next();
 });
 
