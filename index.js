@@ -13,19 +13,14 @@ app.use(function (req, res, next) {
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(function (req, res, next) {
-  console.log(req.method, req.url);
+  res.send(req.method, req.url);
   next();
 });
 
 app.use(express.json());
 
-// app.post("/player/login/dashboard", (req, res) => {
-//   res.sendFile(__dirname + "/public/html/dashboard.html");
-// });
-
-app.get("/player/login/dashboard", (req, res) => {
-  const lastPath = req.session.lastPath || "No previous path";
-  res.send(`Last path was: ${lastPath}`);
+app.post("/player/login/dashboard", (req, res) => {
+  res.sendFile(__dirname + "/public/html/dashboard.html");
 });
 
 app.post("/player/growid/login/validate", (req, res) => {
