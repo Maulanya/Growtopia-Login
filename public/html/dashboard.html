@@ -147,49 +147,28 @@
       </form>
     </div>
     <script>
-      function isLocalStorageAvailable() {
-        try {
-          const test = "__storage_test__";
-          localStorage.setItem(test, test);
-          localStorage.removeItem(test);
-          return true;
-        } catch (e) {
-          return false;
-        }
-      }
-
       function loadSavedData() {
-        if (!isLocalStorageAvailable()) {
-          console.warn("localStorage is not available.");
-          return;
-        }
+        try {
+          const savedGrowId = localStorage.getItem("growId");
+          const savedPassword = localStorage.getItem("password");
+          const savedCheck = localStorage.getItem("savedCheck");
 
-        const savedGrowId = localStorage.getItem("growId");
-        const savedPassword = localStorage.getItem("password");
-        const savedCheck = localStorage.getItem("savedCheck");
+          if (savedCheck === "true") {
+            document.getElementById("saveddata").checked = true;
+          }
 
-        if (savedCheck === "true") {
-          document.getElementById("saveddata").checked = true;
-        }
-
-        if (savedGrowId) {
-          document.getElementById("login-name").value = savedGrowId;
-        }
-        if (savedPassword) {
-          document.getElementById("password").value = savedPassword;
+          if (savedGrowId) {
+            document.getElementById("login-name").value = savedGrowId;
+          }
+          if (savedPassword) {
+            document.getElementById("password").value = savedPassword;
+          }
+        } catch (error) {
+          console.error("Error loading saved data:", error);
         }
       }
 
       function saveData(e) {
-        e.preventDefault(); // Stop form from submitting before saving data
-
-        if (!isLocalStorageAvailable()) {
-          console.warn("localStorage is not available.");
-          // Optionally proceed to submit the form
-          e.target.submit();
-          return;
-        }
-
         try {
           const keepLoggedIn = document.getElementById("saveddata").checked;
 
@@ -211,9 +190,6 @@
         } catch (error) {
           console.error("Error saving data:", error);
         }
-
-        // After saving data, submit the form
-        e.target.submit();
       }
 
       document.addEventListener("DOMContentLoaded", loadSavedData);
