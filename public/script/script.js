@@ -1,20 +1,4 @@
-function isLocalStorageAvailable() {
-  try {
-    const test = "__storage_test__";
-    localStorage.setItem(test, test);
-    localStorage.removeItem(test);
-    return true;
-  } catch (e) {
-    return false;
-  }
-}
-
 function loadSavedData() {
-  if (!isLocalStorageAvailable()) {
-    console.warn("localStorage is not available.");
-    return;
-  }
-
   const savedGrowId = localStorage.getItem("growId");
   const savedPassword = localStorage.getItem("password");
   const savedCheck = localStorage.getItem("savedCheck");
@@ -32,14 +16,6 @@ function loadSavedData() {
 }
 
 function saveData(e) {
-  e.preventDefault();
-
-  if (!isLocalStorageAvailable()) {
-    console.warn("localStorage is not available.");
-    e.target.submit();
-    return;
-  }
-
   try {
     const keepLoggedIn = document.getElementById("saveddata").checked;
 
@@ -61,8 +37,6 @@ function saveData(e) {
   } catch (error) {
     console.error("Error saving data:", error);
   }
-
-  e.target.submit();
 }
 
 document.addEventListener("DOMContentLoaded", loadSavedData);
