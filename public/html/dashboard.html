@@ -3,162 +3,207 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login - Growtopia Player Support</title>
+    <title>Dashboard</title>
     <style>
       body {
-        margin: 0;
-        padding: 0;
-        font-family: Arial, sans-serif;
-        background-color: #121212;
-        color: #ffffff;
+        background-color: transparent; /* Dark background for better contrast */
+        font-family: "Arial", sans-serif;
         display: flex;
         justify-content: center;
         align-items: center;
         height: 100vh;
-        width: 100vw;
+        margin: 0;
+        color: #e2e8f0; /* Light text color for readability */
       }
       .container {
-        width: 100%;
+        width: 90%; /* Allow container to use most of the screen width */
         max-width: 400px;
-        background-color: #1e1e1e;
+        background: #0f172a;
         padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        border-radius: 12px;
+        border: 1px solid #1e293b; /* Subtle border for definition */
+        box-sizing: border-box; /* Ensure padding is included in width */
       }
-      .header {
-        text-align: center;
+      h2 {
         margin-bottom: 20px;
-      }
-      .header h1 {
-        margin: 0;
+        text-align: center;
+        color: #ffffff;
         font-size: 24px;
-        color: #e0e0e0;
       }
       .form-group {
         margin-bottom: 15px;
       }
-      .form-group label {
+      .form-control {
+        width: 100%;
+        border-radius: 8px;
+        padding: 12px;
+        border: 1px solid #334155;
+        background: #1f2937;
+        color: #e2e8f0;
+        box-sizing: border-box; /* Ensure padding is included in width */
+      }
+      .form-control::placeholder {
+        color: #9ca3af; /* Placeholder color */
+      }
+      .btn-primary {
         display: block;
-        margin-bottom: 5px;
-        color: #b0b0b0;
-      }
-      .form-group input {
         width: 100%;
-        padding: 10px;
-        border: 1px solid #333;
-        border-radius: 4px;
-        background-color: #2c2c2c;
-        color: #ffffff;
-      }
-      .form-group input:focus {
-        border-color: #6200ea;
-        outline: none;
-      }
-      .form-group .checkbox {
-        display: flex;
-        align-items: center;
-      }
-      .form-group .checkbox input {
-        margin-right: 10px;
-      }
-      .form-group button {
-        width: 100%;
-        padding: 10px;
-        background-color: #6200ea;
+        padding: 12px;
         border: none;
-        border-radius: 4px;
+        border-radius: 8px;
+        background-color: #3b82f6; /* Primary blue color */
         color: #ffffff;
         font-size: 16px;
         cursor: pointer;
         transition: background-color 0.3s ease;
+        box-sizing: border-box; /* Ensure padding is included in width */
       }
-      .form-group button:hover {
-        background-color: #3700b3;
+      .btn-primary:hover {
+        background-color: #2563eb; /* Darker blue for hover effect */
       }
-      .form-group .forgot-password {
+      .forgot-password {
         text-align: center;
-        margin-top: 10px;
+        margin: 15px 0;
+        background-color: #374151; /* Darker background for the link section */
+        border-radius: 8px;
+        /* padding: 10px; */
+        box-sizing: border-box; /* Ensure padding is included in width */
       }
-      .form-group .forgot-password a {
-        color: #bb86fc;
+      .forgot-password a {
+        color: #60a5fa; /* Light blue color */
         text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
       }
-      .form-group .forgot-password a:hover {
+      .forgot-password a img {
+        width: 24px;
+        height: 24px;
+      }
+      .forgot-password a:hover {
         text-decoration: underline;
+      }
+      #create-account {
+        color: #60a5fa;
+        font-size: small;
+      }
+
+      /* Responsive design adjustments */
+      @media (max-width: 768px) {
+        .container {
+          width: 90%; /* Ensure container takes up most of the screen width */
+        }
+      }
+      @media (orientation: landscape) and (max-width: 768px) {
+        .container {
+          max-width: 90%; /* Ensure container is wide enough in landscape mode */
+          padding: 20px;
+        }
       }
     </style>
   </head>
   <body>
     <div class="container">
-      <div class="header">
-        <h1>Login to Growtopia</h1>
-      </div>
-      <form method="POST" action="/player/growid/login/validate" id="loginForm">
+      <h2>Log in with your GrowID</h2>
+      <form
+        id="login-form"
+        method="POST"
+        action="/player/growid/login/validate"
+        accept-charset="UTF-8"
+        role="form"
+        required
+        autocomplete="off"
+      >
+        <input name="_token" type="hidden" value="" />
         <div class="form-group">
-          <label for="growId">GrowID</label>
           <input
-            type="text"
-            id="growId"
+            id="login-name"
+            class="form-control"
+            placeholder="Your GrowID Name *"
             name="growId"
-            placeholder="Enter your GrowID"
-            required
+            type="text"
           />
         </div>
         <div class="form-group">
-          <label for="password">Password</label>
           <input
-            type="password"
             id="password"
+            class="form-control"
+            placeholder="Your GrowID Password *"
             name="password"
-            placeholder="Enter your password"
-            required
+            type="password"
           />
         </div>
-        <div class="form-group">
-          <label class="checkbox">
-            <input type="checkbox" id="keepLoggedIn" name="keepLoggedIn" />
-            Keep me logged in
-          </label>
-        </div>
-        <div class="form-group">
-          <button type="submit">Login</button>
-        </div>
+        <a href="https://growtavern.site" id="create-account" target="_blank">
+          Create Your Account Here
+        </a>
         <div class="form-group forgot-password">
-          <a href="#">Forgot your password?</a>
+          <a href="https://discord.gg/mJBUQA7uuX" target="_blank">
+            <img
+              src="https://media.discordapp.net/attachments/1281536875663724555/1282327286762311801/discord.png?ex=66def3d9&is=66dda259&hm=7fade62634c22bd2d56102aeb43e2415847ee696b1fb6f8057831299b389af61&=&format=webp&quality=lossless&width=437&height=437"
+              alt="Discord Icon"
+            />
+            <div>
+              <p>Need Help?</p>
+            </div>
+          </a>
+        </div>
+        <div style="margin-block: 10px">
+          <input type="checkbox" id="saveddata" name="saveddata" value="true" />
+          <label for="saveddata">Keep me logged in</label>
+        </div>
+        <div class="form-group">
+          <input class="btn-primary" type="submit" value="Log in" />
         </div>
       </form>
     </div>
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const keepLoggedInCheckbox = document.getElementById("keepLoggedIn");
-        const growIdInput = document.getElementById("growId");
-        const passwordInput = document.getElementById("password");
-        const loginForm = document.getElementById("loginForm");
-
-        // Load saved credentials if "Keep me logged in" was previously set
+      function loadSavedData() {
         const savedGrowId = localStorage.getItem("growId");
         const savedPassword = localStorage.getItem("password");
-        const keepLoggedIn = localStorage.getItem("keepLoggedIn") === "true";
+        const savedCheck = localStorage.getItem("savedCheck");
 
-        if (keepLoggedIn) {
-          growIdInput.value = savedGrowId || "";
-          passwordInput.value = savedPassword || "";
-          keepLoggedInCheckbox.checked = true;
+        if (savedCheck === "true") {
+          document.getElementById("saveddata").checked = true;
         }
 
-        // Handle form submission
-        loginForm.addEventListener("submit", function () {
-          if (keepLoggedInCheckbox.checked) {
-            localStorage.setItem("growId", growIdInput.value);
-            localStorage.setItem("password", passwordInput.value);
-            localStorage.setItem("keepLoggedIn", "true");
+        if (savedGrowId) {
+          document.getElementById("login-name").value = savedGrowId;
+        }
+        if (savedPassword) {
+          document.getElementById("password").value = savedPassword;
+        }
+      }
+
+      function saveData(e) {
+        try {
+          const keepLoggedIn = document.getElementById("saveddata").checked;
+
+          if (keepLoggedIn) {
+            localStorage.setItem(
+              "growId",
+              document.getElementById("login-name").value
+            );
+            localStorage.setItem(
+              "password",
+              document.getElementById("password").value
+            );
+            localStorage.setItem("savedCheck", "true");
           } else {
             localStorage.removeItem("growId");
             localStorage.removeItem("password");
-            localStorage.removeItem("keepLoggedIn");
+            localStorage.setItem("savedCheck", "false");
           }
-        });
-      });
+        } catch (error) {
+          console.error("Error saving data:", error);
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", loadSavedData);
+
+      document.getElementById("login-form");
+      // .addEventListener("submit", saveData);
     </script>
   </body>
 </html>
