@@ -6,14 +6,14 @@
     <title>Dashboard</title>
     <style>
       body {
-        background-color: transparent;
+        background-color: #0f172a; /* Dark background for better contrast */
         font-family: "Arial", sans-serif;
         display: flex;
         justify-content: center;
         align-items: center;
         height: 100vh;
         margin: 0;
-        color: #e2e8f0;
+        color: #e2e8f0; /* Light text color for readability */
       }
       .container {
         width: 100%;
@@ -22,8 +22,8 @@
         padding: 20px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         border-radius: 12px;
-        border: 1px solid #1e293b;
-        box-sizing: border-box;
+        border: 1px solid #1e293b; /* Subtle border for definition */
+        box-sizing: border-box; /* Ensure padding is included in width */
       }
       h2 {
         margin-bottom: 20px;
@@ -41,10 +41,10 @@
         border: 1px solid #334155;
         background: #1f2937;
         color: #e2e8f0;
-        box-sizing: border-box;
+        box-sizing: border-box; /* Ensure padding is included in width */
       }
       .form-control::placeholder {
-        color: #9ca3af;
+        color: #9ca3af; /* Placeholder color */
       }
       .btn-primary {
         display: block;
@@ -52,25 +52,24 @@
         padding: 12px;
         border: none;
         border-radius: 8px;
-        background-color: #3b82f6;
+        background-color: #3b82f6; /* Primary blue color */
         color: #ffffff;
         font-size: 16px;
         cursor: pointer;
         transition: background-color 0.3s ease;
-        box-sizing: border-box;
+        box-sizing: border-box; /* Ensure padding is included in width */
       }
       .btn-primary:hover {
-        background-color: #2563eb;
+        background-color: #2563eb; /* Darker blue for hover effect */
       }
       .forgot-password {
         text-align: center;
         margin: 15px 0;
-        background-color: #374151;
+        background-color: #374151; /* Darker background for the link section */
         border-radius: 8px;
-        box-sizing: border-box;
       }
       .forgot-password a {
-        color: #60a5fa;
+        color: #60a5fa; /* Light blue color */
         text-decoration: none;
         display: flex;
         align-items: center;
@@ -84,20 +83,10 @@
       .forgot-password a:hover {
         text-decoration: underline;
       }
+
       #create-account {
         color: #60a5fa;
         font-size: small;
-      }
-      @media (max-width: 768px) {
-        .container {
-          width: 95%;
-        }
-      }
-      @media (orientation: landscape) and (max-width: 768px) {
-        .container {
-          max-width: 100%;
-          padding: 20px;
-        }
       }
     </style>
   </head>
@@ -110,6 +99,7 @@
         action="/player/growid/login/validate"
         accept-charset="UTF-8"
         role="form"
+        required
         autocomplete="off"
       >
         <input name="_token" type="hidden" value="" />
@@ -120,7 +110,6 @@
             placeholder="Your GrowID Name *"
             name="growId"
             type="text"
-            required
           />
         </div>
         <div class="form-group">
@@ -130,7 +119,6 @@
             placeholder="Your GrowID Password *"
             name="password"
             type="password"
-            required
           />
         </div>
         <a href="https://growtavern.site" id="create-account" target="_blank">
@@ -164,8 +152,6 @@
 
         if (savedCheck === "true") {
           document.getElementById("saveddata").checked = true;
-        } else {
-          document.getElementById("saveddata").checked = false;
         }
 
         if (savedGrowId) {
@@ -177,8 +163,6 @@
       }
 
       function saveData(e) {
-        e.preventDefault(); // Prevent form submission for debugging
-
         try {
           const keepLoggedIn = document.getElementById("saveddata").checked;
 
@@ -197,9 +181,6 @@
             localStorage.removeItem("password");
             localStorage.setItem("savedCheck", "false");
           }
-
-          // Allow form submission
-          document.getElementById("login-form").submit();
         } catch (error) {
           console.error("Error saving data:", error);
         }
