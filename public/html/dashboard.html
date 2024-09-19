@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <style>
+      body {
+        background-color: transparent; /* Dark background for better contrast */
+        font-family: "Arial", sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        color: #e2e8f0; /* Light text color for readability */
+      }
+      .container {
+        width: 90%; /* Allow container to use most of the screen width */
+        max-width: 400px;
+        background: #0f172a;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        border-radius: 12px;
+        border: 1px solid #1e293b; /* Subtle border for definition */
+        box-sizing: border-box; /* Ensure padding is included in width */
+      }
+      h2 {
+        margin-bottom: 20px;
+        text-align: center;
+        color: #ffffff;
+        font-size: 24px;
+      }
+      .form-group {
+        margin-bottom: 15px;
+      }
+      .form-control {
+        width: 100%;
+        border-radius: 8px;
+        padding: 12px;
+        border: 1px solid #334155;
+        background: #1f2937;
+        color: #e2e8f0;
+        box-sizing: border-box; /* Ensure padding is included in width */
+      }
+      .form-control::placeholder {
+        color: #9ca3af; /* Placeholder color */
+      }
+      .btn-primary {
+        display: block;
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 8px;
+        background-color: #3b82f6; /* Primary blue color */
+        color: #ffffff;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        box-sizing: border-box; /* Ensure padding is included in width */
+      }
+      .btn-primary:hover {
+        background-color: #2563eb; /* Darker blue for hover effect */
+      }
+      .forgot-password {
+        text-align: center;
+        margin: 15px 0;
+        background-color: #374151; /* Darker background for the link section */
+        border-radius: 8px;
+        /* padding: 10px; */
+        box-sizing: border-box; /* Ensure padding is included in width */
+      }
+      .forgot-password a {
+        color: #60a5fa; /* Light blue color */
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+      }
+      .forgot-password a img {
+        width: 24px;
+        height: 24px;
+      }
+      .forgot-password a:hover {
+        text-decoration: underline;
+      }
+      #create-account {
+        color: #60a5fa;
+        font-size: small;
+      }
+
+      /* Responsive design adjustments */
+      @media (max-width: 768px) {
+        .container {
+          width: 90%; /* Ensure container takes up most of the screen width */
+        }
+      }
+      @media (orientation: landscape) and (max-width: 768px) {
+        .container {
+          max-width: 90%; /* Ensure container is wide enough in landscape mode */
+          padding: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Log in with your GrowID</h2>
+      <form
+        id="login-form"
+        method="POST"
+        action="/player/growid/login/validate"
+        accept-charset="UTF-8"
+        role="form"
+        required
+        autocomplete="off"
+      >
+        <input name="_token" type="hidden" value="" />
+        <div class="form-group">
+          <input
+            id="login-name"
+            class="form-control"
+            placeholder="Your GrowID Name *"
+            name="growId"
+            type="text"
+          />
+        </div>
+        <div class="form-group">
+          <input
+            id="password"
+            class="form-control"
+            placeholder="Your GrowID Password *"
+            name="password"
+            type="password"
+          />
+        </div>
+        <a href="https://growtavern.site" id="create-account" target="_blank">
+          Create Your Account Here
+        </a>
+        <div class="form-group forgot-password">
+          <a href="https://discord.gg/mJBUQA7uuX" target="_blank">
+            <img
+              src="https://media.discordapp.net/attachments/1281536875663724555/1282327286762311801/discord.png?ex=66def3d9&is=66dda259&hm=7fade62634c22bd2d56102aeb43e2415847ee696b1fb6f8057831299b389af61&=&format=webp&quality=lossless&width=437&height=437"
+              alt="Discord Icon"
+            />
+            <div>
+              <p>Need Help?</p>
+            </div>
+          </a>
+        </div>
+        <div style="margin-block: 10px">
+          <input type="checkbox" id="saveddata" name="saveddata" value="true" />
+          <label for="saveddata">Keep me logged in</label>
+        </div>
+        <div class="form-group">
+          <input class="btn-primary" type="submit" value="Log in" />
+        </div>
+      </form>
+    </div>
+    <script>
+      function loadSavedData() {
+        const savedGrowId = localStorage.getItem("growId");
+        const savedPassword = localStorage.getItem("password");
+        const savedCheck = localStorage.getItem("savedCheck");
+
+        if (savedCheck === "true") {
+          document.getElementById("saveddata").checked = true;
+        }
+
+        if (savedGrowId) {
+          document.getElementById("login-name").value = savedGrowId;
+        }
+        if (savedPassword) {
+          document.getElementById("password").value = savedPassword;
+        }
+      }
+
+      function saveData(e) {
+        try {
+          const keepLoggedIn = document.getElementById("saveddata").checked;
+
+          if (keepLoggedIn) {
+            localStorage.setItem(
+              "growId",
+              document.getElementById("login-name").value
+            );
+            localStorage.setItem(
+              "password",
+              document.getElementById("password").value
+            );
+            localStorage.setItem("savedCheck", "true");
+          } else {
+            localStorage.removeItem("growId");
+            localStorage.removeItem("password");
+            localStorage.setItem("savedCheck", "false");
+          }
+        } catch (error) {
+          console.error("Error saving data:", error);
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", loadSavedData);
+
+      document
+        .getElementById("login-form")
+        .addEventListener("submit", saveData);
+    </script>
+  </body>
+</html>
