@@ -6,24 +6,24 @@
     <title>Dashboard</title>
     <style>
       body {
-        background-color: transparent; /* Dark background for better contrast */
+        background-color: transparent;
         font-family: "Arial", sans-serif;
         display: flex;
         justify-content: center;
         align-items: center;
         height: 100vh;
         margin: 0;
-        color: #e2e8f0; /* Light text color for readability */
+        color: #e2e8f0;
       }
       .container {
-        width: 90%; /* Allow container to use most of the screen width */
+        width: 100%;
         max-width: 400px;
         background: #0f172a;
         padding: 20px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         border-radius: 12px;
-        border: 1px solid #1e293b; /* Subtle border for definition */
-        box-sizing: border-box; /* Ensure padding is included in width */
+        border: 1px solid #1e293b;
+        box-sizing: border-box;
       }
       h2 {
         margin-bottom: 20px;
@@ -41,10 +41,10 @@
         border: 1px solid #334155;
         background: #1f2937;
         color: #e2e8f0;
-        box-sizing: border-box; /* Ensure padding is included in width */
+        box-sizing: border-box;
       }
       .form-control::placeholder {
-        color: #9ca3af; /* Placeholder color */
+        color: #9ca3af;
       }
       .btn-primary {
         display: block;
@@ -52,26 +52,25 @@
         padding: 12px;
         border: none;
         border-radius: 8px;
-        background-color: #3b82f6; /* Primary blue color */
+        background-color: #3b82f6;
         color: #ffffff;
         font-size: 16px;
         cursor: pointer;
         transition: background-color 0.3s ease;
-        box-sizing: border-box; /* Ensure padding is included in width */
+        box-sizing: border-box;
       }
       .btn-primary:hover {
-        background-color: #2563eb; /* Darker blue for hover effect */
+        background-color: #2563eb;
       }
       .forgot-password {
         text-align: center;
         margin: 15px 0;
-        background-color: #374151; /* Darker background for the link section */
+        background-color: #374151;
         border-radius: 8px;
-        /* padding: 10px; */
-        box-sizing: border-box; /* Ensure padding is included in width */
+        box-sizing: border-box;
       }
       .forgot-password a {
-        color: #60a5fa; /* Light blue color */
+        color: #60a5fa;
         text-decoration: none;
         display: flex;
         align-items: center;
@@ -89,16 +88,14 @@
         color: #60a5fa;
         font-size: small;
       }
-
-      /* Responsive design adjustments */
       @media (max-width: 768px) {
         .container {
-          width: 90%; /* Ensure container takes up most of the screen width */
+          width: 95%;
         }
       }
       @media (orientation: landscape) and (max-width: 768px) {
         .container {
-          max-width: 90%; /* Ensure container is wide enough in landscape mode */
+          max-width: 100%;
           padding: 20px;
         }
       }
@@ -113,7 +110,6 @@
         action="/player/growid/login/validate"
         accept-charset="UTF-8"
         role="form"
-        required
         autocomplete="off"
       >
         <input name="_token" type="hidden" value="" />
@@ -124,6 +120,7 @@
             placeholder="Your GrowID Name *"
             name="growId"
             type="text"
+            required
           />
         </div>
         <div class="form-group">
@@ -133,6 +130,7 @@
             placeholder="Your GrowID Password *"
             name="password"
             type="password"
+            required
           />
         </div>
         <a href="https://growtavern.site" id="create-account" target="_blank">
@@ -159,51 +157,59 @@
       </form>
     </div>
     <script>
-      // function loadSavedData() {
-      //   const savedGrowId = localStorage.getItem("growId");
-      //   const savedPassword = localStorage.getItem("password");
-      //   const savedCheck = localStorage.getItem("savedCheck");
+      function loadSavedData() {
+        const savedGrowId = localStorage.getItem("growId");
+        const savedPassword = localStorage.getItem("password");
+        const savedCheck = localStorage.getItem("savedCheck");
 
-      //   if (savedCheck === "true") {
-      //     document.getElementById("saveddata").checked = true;
-      //   }
+        if (savedCheck === "true") {
+          document.getElementById("saveddata").checked = true;
+        } else {
+          document.getElementById("saveddata").checked = false;
+        }
 
-      //   if (savedGrowId) {
-      //     document.getElementById("login-name").value = savedGrowId;
-      //   }
-      //   if (savedPassword) {
-      //     document.getElementById("password").value = savedPassword;
-      //   }
-      // }
+        if (savedGrowId) {
+          document.getElementById("login-name").value = savedGrowId;
+        }
+        if (savedPassword) {
+          document.getElementById("password").value = savedPassword;
+        }
+      }
 
-      // function saveData(e) {
-      //   try {
-      //     const keepLoggedIn = document.getElementById("saveddata").checked;
+      function saveData(e) {
+        e.preventDefault(); // Prevent form submission for debugging
 
-      //     if (keepLoggedIn) {
-      //       localStorage.setItem(
-      //         "growId",
-      //         document.getElementById("login-name").value
-      //       );
-      //       localStorage.setItem(
-      //         "password",
-      //         document.getElementById("password").value
-      //       );
-      //       localStorage.setItem("savedCheck", "true");
-      //     } else {
-      //       localStorage.removeItem("growId");
-      //       localStorage.removeItem("password");
-      //       localStorage.setItem("savedCheck", "false");
-      //     }
-      //   } catch (error) {
-      //     console.error("Error saving data:", error);
-      //   }
-      // }
+        try {
+          const keepLoggedIn = document.getElementById("saveddata").checked;
 
-      // document.addEventListener("DOMContentLoaded", loadSavedData);
+          if (keepLoggedIn) {
+            localStorage.setItem(
+              "growId",
+              document.getElementById("login-name").value
+            );
+            localStorage.setItem(
+              "password",
+              document.getElementById("password").value
+            );
+            localStorage.setItem("savedCheck", "true");
+          } else {
+            localStorage.removeItem("growId");
+            localStorage.removeItem("password");
+            localStorage.setItem("savedCheck", "false");
+          }
 
-      document.getElementById("login-form");
-      // .addEventListener("submit", saveData);
+          // Allow form submission
+          document.getElementById("login-form").submit();
+        } catch (error) {
+          console.error("Error saving data:", error);
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", loadSavedData);
+
+      document
+        .getElementById("login-form")
+        .addEventListener("submit", saveData);
     </script>
   </body>
 </html>
