@@ -1,222 +1,154 @@
 <!DOCTYPE html>
-<html
-  lang="en"
-  style="background-color: rgba(0, 0, 0, 0); width: 100%; height: 100%"
->
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Growtopia Player Support</title>
-    <link
-      rel="icon"
-      type="image/png"
-      href="https://s3.eu-west-1.amazonaws.com/cdn.growtopiagame.com/website/resources/assets/images/growtopia.ico"
-      sizes="16x16"
-    />
-    <link
-      rel="shortcut icon"
-      href="https://s3.eu-west-1.amazonaws.com/cdn.growtopiagame.com/website/resources/assets/images/growtopia.ico"
-      type="image/x-icon"
-    />
-    <link
-      rel="icon"
-      href="https://s3.eu-west-1.amazonaws.com/cdn.growtopiagame.com/website/resources/assets/images/growtopia.ico"
-      type="image/x-icon"
-    />
-    <!-- include bootstrap and custom css -->
-    <link
-      media="all"
-      rel="stylesheet"
-      href="https://s3.eu-west-1.amazonaws.com/cdn.growtopiagame.com/website/resources/assets/css/faq-main.css"
-    />
-    <link
-      media="all"
-      rel="stylesheet"
-      href="https://s3.eu-west-1.amazonaws.com/cdn.growtopiagame.com/website/resources/assets/css/shop-custom.css"
-    />
-    <link
-      media="all"
-      rel="stylesheet"
-      href="https://s3.eu-west-1.amazonaws.com/cdn.growtopiagame.com/website/resources/assets/css/ingame-custom.css"
-    />
+    <title>Login - Growtopia Player Support</title>
     <style>
-      .modal-backdrop {
-        background-color: rgba(0, 0, 0, 0.1);
-      }
-      .modal-backdrop + div {
-        overflow: auto;
-      }
-      .modal-body,
-      .content {
+      body {
+        margin: 0;
         padding: 0;
+        font-family: Arial, sans-serif;
+        background-color: #121212;
+        color: #ffffff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        width: 100vw;
+      }
+      .container {
+        width: 100%;
+        max-width: 400px;
+        background-color: #1e1e1e;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      }
+      .header {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .header h1 {
+        margin: 0;
+        font-size: 24px;
+        color: #e0e0e0;
+      }
+      .form-group {
+        margin-bottom: 15px;
+      }
+      .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        color: #b0b0b0;
+      }
+      .form-group input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #333;
+        border-radius: 4px;
+        background-color: #2c2c2c;
+        color: #ffffff;
+      }
+      .form-group input:focus {
+        border-color: #6200ea;
+        outline: none;
+      }
+      .form-group .checkbox {
+        display: flex;
+        align-items: center;
+      }
+      .form-group .checkbox input {
+        margin-right: 10px;
+      }
+      .form-group button {
+        width: 100%;
+        padding: 10px;
+        background-color: #6200ea;
+        border: none;
+        border-radius: 4px;
+        color: #ffffff;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      .form-group button:hover {
+        background-color: #3700b3;
+      }
+      .form-group .forgot-password {
+        text-align: center;
+        margin-top: 10px;
+      }
+      .form-group .forgot-password a {
+        color: #bb86fc;
+        text-decoration: none;
+      }
+      .form-group .forgot-password a:hover {
+        text-decoration: underline;
       }
     </style>
   </head>
-  <body style="background-color: rgba(0, 0, 0, 0)">
-    <button
-      type="button"
-      class="btn btn-primary hidden"
-      data-toggle="modal"
-      id="modalButton"
-      data-target="#modalShow"
-      data-backdrop="static"
-      data-keyboard="false"
-    ></button>
-    <div class="content">
-      <section class="common-box">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12 col-sm-12">
-              <div class="row">
-                <div
-                  class="modal fade product-list-popup"
-                  id="modalShow"
-                  tabindex="-1"
-                  role="dialog"
-                  aria-hidden="false"
-                >
-                  <div
-                    class="modal-dialog modal-dialog-centered"
-                    role="document"
-                  >
-                    <div class="modal-content">
-                      <div class="modal-body">
-                        <div class="content">
-                          <section class="common-box">
-                            <div class="container">
-                              <div class="section-title center-align">
-                                <h2>Log in with your GrowID</h2>
-                              </div>
-                              <div class="row div-content-center">
-                                <div class="col-md-12 col-sm-12">
-                                  <form
-                                    method="POST"
-                                    action="https://gtlogin-backend.vercel.app/player/growid/login/validate"
-                                    accept-charset="UTF-8"
-                                    class=""
-                                    role="form"
-                                    required="required"
-                                    autocomplete="off"
-                                  >
-                                    <input
-                                      name="_token"
-                                      type="hidden"
-                                      value=""
-                                    />
-                                    <div class="form-group">
-                                      <input
-                                        id="login-name"
-                                        class="form-control grow-text"
-                                        placeholder="Your GrowID Name *"
-                                        name="growId"
-                                        type="text"
-                                      />
-                                    </div>
-                                    <div class="form-group">
-                                      <input
-                                        id="password"
-                                        class="form-control grow-text"
-                                        placeholder="Your GrowID Password *"
-                                        name="password"
-                                        type="password"
-                                        value=""
-                                      />
-                                    </div>
-                                    <div
-                                      class="form-group text-center forgot-password"
-                                    >
-                                      <a
-                                        href="https://gg.gg/venturaps"
-                                        target="_blank"
-                                      >
-                                        Need Help? Join our Discord!
-                                      </a>
-                                    </div>
-                                    <div class="form-group text-center">
-                                      <input
-                                        class="btn btn-lg btn-primary grow-button"
-                                        type="submit"
-                                        value="Log in"
-                                      />
-                                    </div>
-                                  </form>
-                                </div>
-                              </div>
-                            </div>
-                          </section>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>Login to Growtopia</h1>
+      </div>
+      <form method="POST" action="/player/growid/login/validate" id="loginForm">
+        <div class="form-group">
+          <label for="growId">GrowID</label>
+          <input
+            type="text"
+            id="growId"
+            name="growId"
+            placeholder="Enter your GrowID"
+            required
+          />
         </div>
-      </section>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter your password"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label class="checkbox">
+            <input type="checkbox" id="keepLoggedIn" name="keepLoggedIn" />
+            Keep me logged in
+          </label>
+        </div>
+        <div class="form-group">
+          <button type="submit">Login</button>
+        </div>
+        <div class="form-group forgot-password">
+          <a href="#">Forgot your password?</a>
+        </div>
+      </form>
     </div>
-  </body>
-  <!-- JQUERY LIBRARY -->
-  <script src="https://s3.eu-west-1.amazonaws.com/cdn.growtopiagame.com/website/resources/vendors/jquery/jquery-2.1.4.min.js"></script>
-  <!-- boostrap javascript -->
-  <script src="https://s3.eu-west-1.amazonaws.com/cdn.growtopiagame.com/website/resources/vendors/bootstrap/javascripts/bootstrap.min.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      let clicked = false;
-      const links = document.querySelectorAll("a");
-      links.forEach((link) => {
-        link.addEventListener("click", function (event) {
-          if (clicked === false) {
-            clicked = true;
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const keepLoggedInCheckbox = document.getElementById("keepLoggedIn");
+        const loginForm = document.getElementById("loginForm");
+
+        // Handle form submission
+        loginForm.addEventListener("submit", function () {
+          if (keepLoggedInCheckbox.checked) {
+            localStorage.setItem("keepLoggedIn", "true");
           } else {
-            event.preventDefault();
+            localStorage.removeItem("keepLoggedIn");
           }
         });
-      });
 
-      document.addEventListener("keydown", function (e) {
-        if (
-          e.key == 123 ||
-          e.key == "F12" ||
-          (e.ctrlKey &&
-            e.shiftKey &&
-            (e.key == "I" || e.key == "C" || e.key == "J")) ||
-          (e.ctrlKey && e.key == "U")
-        ) {
-          e.preventDefault();
+        // Auto-login if "Keep me logged in" was previously set
+        if (localStorage.getItem("keepLoggedIn") === "true") {
+          // Implement auto-login logic here
+          // For example, you might redirect to a dashboard or perform an auto-login request
+          window.location.href = "/player/login/dashboard";
         }
       });
-
-      document.getElementById("modalButton").click();
-
-      document.querySelectorAll(".close").forEach((closeButton) => {
-        closeButton.addEventListener("click", function () {
-          window.location.href =
-            "https://gtlogin-backend.vercel.app/player/validate/close";
-        });
-      });
-
-      const observer = new MutationObserver(function (mutations) {
-        mutations.forEach(function (mutation) {
-          mutation.addedNodes.forEach((node) => {
-            if (node.tagName === "DIV") {
-              const sw = window.screen.width;
-              if (sw < 667) {
-                node.style.transform = "scale(0.75)";
-                node.style.transformOrigin = "0 0";
-                node.style.overflow = "auto";
-              }
-            }
-          });
-        });
-      });
-
-      observer.observe(document.body, {
-        attributes: false,
-        childList: true,
-        characterData: false,
-      });
-    });
-  </script>
+    </script>
+  </body>
 </html>
