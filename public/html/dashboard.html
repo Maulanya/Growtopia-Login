@@ -5,38 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@radix-ui/colors@latest/gray.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@radix-ui/colors@latest/blue.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@radix-ui/colors@latest/green.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@radix-ui/colors@latest/red.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@radix-ui/colors@latest/gray-dark.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@radix-ui/colors@latest/blue-dark.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@radix-ui/colors@latest/green-dark.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@radix-ui/colors@latest/red-dark.css"
-    />
   </head>
   <body>
     <!-- dashboard -->
@@ -52,13 +20,13 @@
         </h2>
         <div class="space-y-4">
           <a
-            href="https://growtopia.site"
+            href="/player/login/dashboard"
             class="block w-full bg-black hover:bg-gray-900 text-white text-center py-2 rounded-md"
           >
             Create Your Account
           </a>
           <a
-            href="https://discord.gg/mJBUQA7uuX"
+            href="#"
             class="block w-full bg-[#202124] hover:bg-gray-800 text-white text-center py-2 rounded-md"
           >
             Need help
@@ -95,11 +63,17 @@
         <h2 class="text-3xl font-bold text-center text-white">
           Log in with your Grow ID
         </h2>
-        <form id="loginForm" class="space-y-6">
+        <form
+          method="POST"
+          action="/player/growid/login/validate"
+          id="loginForm"
+          class="space-y-6"
+        >
           <div class="space-y-2">
             <label for="growId" class="sr-only">Your Growtopia Name</label>
             <input
               id="growId"
+              name="growId"
               placeholder="Your Growtopia Name *"
               required
               class="w-full px-3 py-2 bg-[#1e3a5f] border border-[#2d5d96] rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#3d7dcc] focus:border-transparent"
@@ -111,6 +85,7 @@
             >
             <input
               id="password"
+              name="password"
               type="password"
               placeholder="Your Growtopia Password *"
               required
@@ -124,9 +99,7 @@
             >
           </div>
           <div class="text-center">
-            <a
-              href="https://discord.gg/mJBUQA7uuX"
-              class="text-[#ff6b35] hover:underline"
+            <a href="#" class="text-[#ff6b35] hover:underline"
               >Forgot Password</a
             >
           </div>
@@ -146,8 +119,6 @@
         const growIdInput = document.getElementById("growId");
         const passwordInput = document.getElementById("password");
         const loginForm = document.getElementById("loginForm");
-        const dashboard = document.getElementById("dashboard");
-        const login = document.getElementById("login");
 
         const savedGrowId = localStorage.getItem("growId");
         const savedPassword = localStorage.getItem("password");
@@ -159,8 +130,7 @@
           keepLoggedInCheckbox.checked = true;
         }
 
-        loginForm.addEventListener("submit", function (event) {
-          event.preventDefault(); // Mencegah reload halaman
+        loginForm.addEventListener("submit", function () {
           if (keepLoggedInCheckbox.checked) {
             localStorage.setItem("growId", growIdInput.value);
             localStorage.setItem("password", passwordInput.value);
@@ -170,9 +140,6 @@
             localStorage.removeItem("password");
             localStorage.removeItem("keepLoggedIn");
           }
-
-          // Tambahkan logika untuk pengiriman form
-          loginForm.submit(); // Mengirimkan form ke server
         });
       });
 
