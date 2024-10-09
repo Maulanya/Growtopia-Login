@@ -3,153 +3,151 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login - Growtopia Player Support</title>
-    <style>
-      body {
-        background-color: transparent;
-        font-family: "Arial", sans-serif;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-        color: #e2e8f0;
-      }
-      .container {
-        width: 100%;
-        max-width: 400px;
-        background: #0f172a;
-        padding: 20px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        border-radius: 12px;
-        border: 1px solid #1e293b;
-        box-sizing: border-box;
-      }
-      .header h1 {
-        margin-bottom: 20px;
-        text-align: center;
-        color: #ffffff;
-        font-size: 24px;
-      }
-      .form-group {
-        margin-bottom: 15px;
-      }
-      .form-control {
-        width: 100%;
-        border-radius: 8px;
-        padding: 12px;
-        border: 1px solid #334155;
-        background: #1f2937;
-        color: #e2e8f0;
-        box-sizing: border-box;
-      }
-      .form-control::placeholder {
-        color: #9ca3af;
-      }
-      .btn-primary {
-        display: block;
-        width: 100%;
-        padding: 12px;
-        border: none;
-        border-radius: 8px;
-        background-color: #3b82f6;
-        color: #ffffff;
-        font-size: 16px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-        box-sizing: border-box;
-      }
-      .btn-primary:hover {
-        background-color: #2563eb;
-      }
-      .forgot-password {
-        text-align: center;
-        margin: 15px 0;
-        background-color: #374151;
-        border-radius: 8px;
-        box-sizing: border-box;
-      }
-      .forgot-password a {
-        color: #60a5fa;
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-      }
-      .forgot-password a img {
-        width: 24px;
-        height: 24px;
-      }
-      .forgot-password a:hover {
-        text-decoration: underline;
-      }
-      .checkbox {
-        display: flex;
-        align-items: center;
-        margin-bottom: 15px;
-      }
-      .checkbox input {
-        margin-right: 10px;
-      }
-      #create-account {
-        color: #60a5fa;
-        font-size: small;
-        display: block;
-        text-align: center;
-        margin-top: 10px;
-      }
-    </style>
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@radix-ui/colors@latest/gray.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@radix-ui/colors@latest/blue.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@radix-ui/colors@latest/green.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@radix-ui/colors@latest/red.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@radix-ui/colors@latest/gray-dark.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@radix-ui/colors@latest/blue-dark.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@radix-ui/colors@latest/green-dark.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@radix-ui/colors@latest/red-dark.css"
+    />
   </head>
   <body>
-    <div class="container">
-      <div class="header">
-        <h1>Login to Growtopia</h1>
-      </div>
-      <form method="POST" action="/player/growid/login/validate" id="loginForm">
-        <div class="form-group">
-          <input
-            id="growId"
-            class="form-control"
-            placeholder="Enter your GrowID"
-            name="growId"
-            type="text"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <input
-            id="password"
-            class="form-control"
-            placeholder="Enter your password"
-            name="password"
-            type="password"
-            required
-          />
-        </div>
-        <div class="checkbox">
-          <input type="checkbox" id="keepLoggedIn" name="keepLoggedIn" />
-          <label for="keepLoggedIn">Keep me logged in</label>
-        </div>
-        <div class="form-group">
-          <input class="btn-primary" type="submit" value="Login" />
-        </div>
-        <div class="form-group forgot-password">
-          <a href="https://discord.gg/mJBUQA7uuX" target="_blank">
-            <p>Need Help?</p>
+    <!-- dashboard -->
+    <div
+      id="dashboard"
+      class="min-h-screen flex items-center justify-center bg-transparent"
+    >
+      <div
+        class="w-full max-w-md p-8 space-y-8 bg-[#234b78] rounded-lg shadow-lg border border-[#2d5d96]"
+      >
+        <h2 class="text-3xl font-bold text-center text-white">
+          Welcome to GrowTopia
+        </h2>
+        <div class="space-y-4">
+          <a
+            href="https://growtopia.site"
+            class="block w-full bg-black hover:bg-gray-900 text-white text-center py-2 rounded-md"
+          >
+            Create Your Account
           </a>
+          <a
+            href="https://discord.gg/mJBUQA7uuX"
+            class="block w-full bg-[#202124] hover:bg-gray-800 text-white text-center py-2 rounded-md"
+          >
+            Need help
+          </a>
+          <div class="relative">
+            <div class="absolute inset-0 flex items-center">
+              <span class="w-full border-t border-gray-500"></span>
+            </div>
+            <div class="relative flex justify-center text-sm">
+              <span class="px-2 bg-[#234b78] text-gray-400"
+                >Legacy users only</span
+              >
+            </div>
+          </div>
+          <button
+            onclick="handleLoginClick()"
+            class="w-full bg-black hover:bg-gray-900 text-yellow-400 border-yellow-400 text-center py-2 rounded-md"
+          >
+            <span class="mr-2 text-2xl font-bold">G</span>
+            Growtopia Login
+          </button>
         </div>
-        <a href="https://growtavern.site" id="create-account" target="_blank">
-          Create Your Account Here
-        </a>
-      </form>
+      </div>
     </div>
+
+    <!-- login -->
+    <div
+      id="login"
+      class="min-h-screen flex items-center justify-center bg-transparent hidden"
+    >
+      <div
+        class="w-full max-w-md p-8 space-y-8 bg-[#234b78] rounded-lg shadow-lg border border-[#2d5d96]"
+      >
+        <h2 class="text-3xl font-bold text-center text-white">
+          Log in with your Grow ID
+        </h2>
+        <form id="loginForm" class="space-y-6">
+          <div class="space-y-2">
+            <label for="growId" class="sr-only">Your Growtopia Name</label>
+            <input
+              id="growId"
+              placeholder="Your Growtopia Name *"
+              required
+              class="w-full px-3 py-2 bg-[#1e3a5f] border border-[#2d5d96] rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#3d7dcc] focus:border-transparent"
+            />
+          </div>
+          <div class="space-y-2">
+            <label for="password" class="sr-only"
+              >Your Growtopia Password</label
+            >
+            <input
+              id="password"
+              type="password"
+              placeholder="Your Growtopia Password *"
+              required
+              class="w-full px-3 py-2 bg-[#1e3a5f] border border-[#2d5d96] rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#3d7dcc] focus:border-transparent"
+            />
+          </div>
+          <div class="checkbox space-y-2">
+            <input type="checkbox" id="keepLoggedIn" />
+            <label for="keepLoggedIn" class="text-white"
+              >Keep me logged in</label
+            >
+          </div>
+          <div class="text-center">
+            <a
+              href="https://discord.gg/mJBUQA7uuX"
+              class="text-[#ff6b35] hover:underline"
+              >Forgot Password</a
+            >
+          </div>
+          <button
+            type="submit"
+            class="w-full bg-[#00a8ff] hover:bg-[#0096e0] text-white font-bold py-2 px-4 rounded-md shadow-md transition duration-300 ease-in-out transform hover:scale-105"
+          >
+            Log in
+          </button>
+        </form>
+      </div>
+    </div>
+
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         const keepLoggedInCheckbox = document.getElementById("keepLoggedIn");
         const growIdInput = document.getElementById("growId");
         const passwordInput = document.getElementById("password");
         const loginForm = document.getElementById("loginForm");
+        const dashboard = document.getElementById("dashboard");
+        const login = document.getElementById("login");
 
         const savedGrowId = localStorage.getItem("growId");
         const savedPassword = localStorage.getItem("password");
@@ -161,7 +159,8 @@
           keepLoggedInCheckbox.checked = true;
         }
 
-        loginForm.addEventListener("submit", function () {
+        loginForm.addEventListener("submit", function (event) {
+          event.preventDefault(); // Mencegah reload halaman
           if (keepLoggedInCheckbox.checked) {
             localStorage.setItem("growId", growIdInput.value);
             localStorage.setItem("password", passwordInput.value);
@@ -171,8 +170,17 @@
             localStorage.removeItem("password");
             localStorage.removeItem("keepLoggedIn");
           }
+
+          // Tambahkan logika untuk pengiriman form
+          loginForm.submit(); // Mengirimkan form ke server
         });
       });
+
+      function handleLoginClick() {
+        // Menyembunyikan dashboard dan menampilkan login
+        document.getElementById("dashboard").classList.add("hidden");
+        document.getElementById("login").classList.remove("hidden");
+      }
     </script>
   </body>
 </html>
