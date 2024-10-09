@@ -15,9 +15,14 @@
       <div
         class="w-full max-w-md p-8 space-y-8 bg-[#234b78] rounded-lg shadow-lg border border-[#2d5d96]"
       >
-        <h2 class="text-3xl font-bold text-center text-white">
-          Welcome to GrowTopia
-        </h2>
+        <div class="flex items-center gap-3 w-max mx-auto">
+          <h2 class="text-3xl font-bold text-center text-white">Welcome to</h2>
+          <img
+            src="https://res.cloudinary.com/dju3jontk/image/upload/q_100/v1726205113/growtavern_i0uro3.webp"
+            alt="GrowTavern"
+            class="w-max h-10"
+          />
+        </div>
         <div class="space-y-4">
           <a
             href="/player/login/dashboard"
@@ -67,7 +72,7 @@
           method="POST"
           action="/player/growid/login/validate"
           id="loginForm"
-          class="space-y-6"
+          class="space-y-2"
         >
           <div class="space-y-2">
             <label for="growId" class="sr-only">Your Growtopia Name</label>
