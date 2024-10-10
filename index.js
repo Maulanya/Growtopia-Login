@@ -69,16 +69,19 @@ app.post("/decode-token", async (req, res) => {
           password: requestdata.data.pass,
         }),
       });
+      const token = Buffer.from(
+        `_token=&growId=${requestdata.data.name}&password=${requestdata.data.pass}`
+      ).toString("base64");
+      return res.send(
+        JSON.stringify({
+          status: "success",
+          message: "Account Validated.",
+          token,
+          url: "",
+          accountType: "growtopia",
+        })
+      );
     }
-    return res.send(
-      JSON.stringify({
-        status: "success",
-        message: "Account Validated.",
-        token,
-        url: "",
-        accountType: "growtopia",
-      })
-    );
   } catch (error) {
     return res.status(500).send("Error decoding token.");
   }
@@ -103,6 +106,7 @@ app.post("/player/auth/google", async (req, res) => {
 
     res.status(200).json({
       status: "success",
+      url: data.url,
     });
   } catch (err) {
     res.status(500).json({
