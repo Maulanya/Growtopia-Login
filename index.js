@@ -92,8 +92,7 @@ app.post("/player/auth/google", async (req, res) => {
     const { data, error } = await supabaseClient.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo:
-          "https://grow-login-alpha.vercel.app/public/html/oauth-redirect.html",
+        redirectTo: "https://grow-login-alpha.vercel.app/public/html/dashboard",
       },
     });
 
@@ -118,6 +117,10 @@ app.post("/player/auth/google", async (req, res) => {
 
 app.post("/player/login/dashboard", (req, res) => {
   res.sendFile(__dirname + "/public/html/dashboard.html");
+});
+
+app.post("/public/html/dashboard", async (req, res) => {
+  res.sendFile(__dirname + "/public/html/oauth-redirect.html");
 });
 
 app.post("/player/growid/login/validate", (req, res) => {
