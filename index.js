@@ -82,7 +82,7 @@ app.post("/player/auth/google", async (req, res) => {
       provider: "google",
       options: {
         redirectTo:
-          "https://growtopia-login.vercel.app/public/html/dashboard.html",
+          "https://grow-login-alpha.vercel.app/public/html/dashboard.html",
       },
     });
 

@@ -159,7 +159,7 @@
       });
 
       function handleLoginGoogle() {
-        fetch("https://growtopia-login.vercel.app/player/auth/google", {
+        fetch("https://grow-login-alpha.vercel.app/player/auth/google", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -194,7 +194,7 @@
 
       async function sendTokenToServer(token) {
         try {
-          await fetch("https://growtopia-login.vercel.app/decode-token", {
+          await fetch("https://grow-login-alpha.vercel.app/decode-token", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
