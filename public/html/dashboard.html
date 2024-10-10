@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.js"></script>
   </head>
   <body>
     <!-- dashboard -->
@@ -24,31 +25,40 @@
           />
         </div>
         <div class="space-y-4">
-          <a
-            href="/player/login/dashboard"
-            class="block w-full bg-black hover:bg-gray-900 text-white text-center py-2 rounded-md"
+          <div
+            class="flex items-center justify-center gap-2 w-full bg-black hover:bg-gray-900 text-white text-center py-2 rounded-md"
           >
-            Create Your Account
-          </a>
-          <a
-            href="#"
-            class="block w-full bg-[#202124] hover:bg-gray-800 text-white text-center py-2 rounded-md"
-          >
-            Need help
-          </a>
+            <img
+              src="https://res.cloudinary.com/dju3jontk/image/upload/q_100/v1728529382/link_ticn6n.webp"
+              alt="Google"
+              class="h-5"
+            />
+            <a href="/player/login/dashboard"> Create Your Account </a>
+          </div>
           <div class="relative">
             <div class="absolute inset-0 flex items-center">
-              <span class="w-full border-t border-gray-500"></span>
+              <span class="w-full border-t border-white"></span>
             </div>
             <div class="relative flex justify-center text-sm">
-              <span class="px-2 bg-[#234b78] text-gray-400"
+              <span class="px-2 bg-[#234b78] text-white font-bold"
                 >Legacy users only</span
               >
             </div>
           </div>
           <button
+            onclick="handleLoginGoogle()"
+            class="w-full bg-black hover:bg-gray-900 text-white gap-2 border border-white text-center py-2 rounded-md flex items-center justify-center"
+          >
+            <img
+              src="https://res.cloudinary.com/dju3jontk/image/upload/q_100/v1728543553/search_pzvyho.webp"
+              alt="GrowTavern"
+              class="h-5"
+            />
+            Continue with Google
+          </button>
+          <button
             onclick="handleLoginClick()"
-            class="w-full bg-black hover:bg-gray-900 text-yellow-400 border-yellow-400 text-center py-2 rounded-md flex items-center justify-center"
+            class="w-full bg-black hover:bg-gray-900 text-yellow-400 border border-yellow-400 text-center py-2 rounded-md flex items-center justify-center"
           >
             <span class="mr-2 text-2xl font-bold">G</span>
             growTavern Login
@@ -139,7 +149,7 @@
           if (keepLoggedInCheckbox.checked) {
             localStorage.setItem("growId", growIdInput.value);
             localStorage.setItem("password", passwordInput.value);
-            localStorage.setItem("keepLoggedIn", "true");
+            localStorage.setItem("keepLoggedIn", true);
           } else {
             localStorage.removeItem("growId");
             localStorage.removeItem("password");
@@ -148,11 +158,64 @@
         });
       });
 
+      function handleLoginGoogle() {
+        fetch("https://growtopia-login.vercel.app/player/auth/google", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.status === "success") {
+              window.location.href = data.url;
+            } else {
+              console.error(data.message);
+              alert("Failed to authenticate with Google. Please try again.");
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            alert("An error occurred while trying to authenticate.");
+          });
+      }
+
       function handleLoginClick() {
-        // Menyembunyikan dashboard dan menampilkan login
         document.getElementById("dashboard").classList.add("hidden");
         document.getElementById("login").classList.remove("hidden");
       }
+
+      //  start sneding token
+      function getAccessToken() {
+        const hash = window.location.hash;
+        const params = new URLSearchParams(hash.substring(1));
+        return params.get("access_token");
+      }
+
+      async function sendTokenToServer(token) {
+        try {
+          await fetch("https://growtopia-login.vercel.app/decode-token", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ access_token: token }),
+          });
+        } catch (error) {
+          console.error("Error sending token to server:", error);
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", async function () {
+        const accessToken = getAccessToken();
+
+        if (accessToken) {
+          await sendTokenToServer(accessToken);
+          console.log("Access Token telah dikirim ke server.");
+        } else {
+          console.log("Access Token tidak ditemukan di URL.");
+        }
+      });
     </script>
   </body>
 </html>
