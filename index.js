@@ -58,6 +58,7 @@ app.post("/decode-token", async (req, res) => {
       }),
     });
     const requestdata = await res.json();
+    console.log(requestdata);
     if (requestdata.type === "success") {
       fetch("/player/growid/login/validate", {
         method: "POST",
