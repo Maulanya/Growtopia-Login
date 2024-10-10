@@ -70,7 +70,15 @@ app.post("/decode-token", async (req, res) => {
         }),
       });
     }
-    return res.sendStatus(200);
+    return res.send(
+      JSON.stringify({
+        status: "success",
+        message: "Account Validated.",
+        token,
+        url: "",
+        accountType: "growtopia",
+      })
+    );
   } catch (error) {
     return res.status(500).send("Error decoding token.");
   }
