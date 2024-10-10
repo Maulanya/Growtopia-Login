@@ -58,7 +58,6 @@ app.post("/decode-token", async (req, res) => {
       }),
     });
     const requestdata = await res.json();
-    console.log(requestdata);
     if (requestdata.type === "success") {
       fetch("/player/growid/login/validate", {
         method: "POST",
@@ -89,10 +88,10 @@ app.post("/player/auth/google", async (req, res) => {
   try {
     const { data, error } = await supabaseClient.auth.signInWithOAuth({
       provider: "google",
-      options: {
-        redirectTo:
-          "https://grow-login-alpha.vercel.app/public/html/dashboard.html",
-      },
+      // options: {
+      //   redirectTo:
+      //     "https://grow-login-alpha.vercel.app/public/html/dashboard.html",
+      // },
     });
 
     if (error) {
@@ -104,7 +103,6 @@ app.post("/player/auth/google", async (req, res) => {
 
     res.status(200).json({
       status: "success",
-      url: data.url,
     });
   } catch (err) {
     res.status(500).json({
