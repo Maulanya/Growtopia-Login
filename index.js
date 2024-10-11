@@ -62,7 +62,7 @@ app.post("/player/login/google/validate", async (req, res) => {
   console.log(email);
   // const resdata = await fetch("http://localhost:1515/player/login/google", {
   const resdata = await fetch(
-    "https://api.growtavern.site/player/login/google",
+    "https://api.growtavern.site:1515/player/login/google",
     {
       method: "POST",
       headers: {
