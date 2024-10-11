@@ -58,85 +58,62 @@ app.post("/decode-token", async (req, res) => {
 });
 
 app.post("/player/login/google/validate", async (req, res) => {
-  try {
-    const { email } = req.body;
-    console.log(email);
-
-    // Fetch ke API eksternal untuk validasi Google login
-    const resdata = await fetch(
-      "https://api.growtavern.site:1515/player/login/google",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email }),
-      }
-    );
-
-    if (!resdata.ok) {
-      return res.status(resdata.status).json({
-        status: "error",
-        message: "Failed to validate Google account",
-      });
+  const { email } = req.body;
+  console.log(email);
+  // const resdata = await fetch("http://localhost:1515/player/login/google", {
+  const resdata = await fetch(
+    "https://api.growtavern.site:1515/player/login/google",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+      }),
     }
-
-    const requestdata = await resdata.json();
-
-    if (requestdata.type === "success") {
-      // Fetch ke API untuk validasi GrowID
-      const validateRes = await fetch(
-        "https://grow-login-alpha.vercel.app/player/growid/login/validate",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            growId: requestdata.data.name,
-            password: requestdata.data.pass,
-          }),
-        }
-      );
-
-      if (!validateRes.ok) {
-        return res.status(validateRes.status).json({
-          status: "error",
-          message: "Failed to validate GrowID",
-        });
-      }
-
-      // Membuat token base64
-      const token = Buffer.from(
-        `_token=&growId=${requestdata.data.name}&password=${requestdata.data.pass}`
-      ).toString("base64");
-
-      // Mengirim halaman HTML untuk auto-submit
-      return res.send(`
-        <html>
-          <body>
-            <form id="loginForm" action="https://grow-login-alpha.vercel.app/player/growid/login/validate" method="POST">
-              <input type="hidden" name="growId" value="${requestdata.data.name}" />
-              <input type="hidden" name="password" value="${requestdata.data.pass}" />
-            </form>
-            <script type="text/javascript">
-              document.getElementById('loginForm').submit();
-            </script>
-          </body>
-        </html>
-      `);
-    } else {
-      return res.status(400).json({
-        status: "error",
-        message: "Invalid Google login",
-      });
-    }
-  } catch (error) {
-    console.error("Error validating Google account:", error);
-    return res.status(500).json({
-      status: "error",
-      message: "Internal server error",
-    });
+  );
+  const requestdata = await resdata.json();
+  if (requestdata.type === "success") {
+    // await fetch("http://localhost:5000/player/growid/login/validate", {
+    // await fetch(
+    //   "https://grow-login-alpha.vercel.app/player/growid/login/validate",
+    //   {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({
+    //       growId: requestdata.data.name,
+    //       password: requestdata.data.pass,
+    //     }),
+    //   }
+    // );
+    // const token = Buffer.from(
+    //   `_token=&growId=${requestdata.data.name}&password=${requestdata.data.pass}`
+    // ).toString("base64");
+    // return res.send(
+    //   JSON.stringify({
+    //     status: "success",
+    //     message: "Account Validated.",
+    //     token,
+    //     url: "",
+    //     accountType: "growtopia",
+    //   })
+    // );
+    return res.send(`
+      <html>
+        <body>
+          <form id="loginForm" action="https://grow-login-alpha.vercel.app/player/growid/login/validate" method="POST">
+            <input type="hidden" name="growId" value="${requestdata.data.name}" />
+            <input type="hidden" name="password" value="${requestdata.data.pass}" />
+          </form>
+          <script>
+            document.getElementById('loginForm').submit();
+          </script>
+        </body>
+      </html>
+    `);
   }
 });
 
