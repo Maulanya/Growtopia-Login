@@ -74,47 +74,38 @@ app.post("/player/login/google/validate", async (req, res) => {
     }
   );
   const requestdata = await resdata.json();
-  if (requestdata.type === "success") {
-    return res.send(`
-      <html>
-        <body>
-          <form id="loginForm" action="https://grow-login-alpha.vercel.app/player/growid/login/validate" method="POST">
-            <input type="hidden" name="growId" value="${requestdata.data.name}" />
-            <input type="hidden" name="password" value="${requestdata.data.pass}" />
-          </form>
-          <script>
-            document.getElementById('loginForm').submit();
-          </script>
-        </body>
-      </html>
-    `);
-    // await fetch("http://localhost:5000/player/growid/login/validate", {
-    // await fetch(
-    //   "https://grow-login-alpha.vercel.app/player/growid/login/validate",
-    //   {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({
-    //       growId: requestdata.data.name,
-    //       password: requestdata.data.pass,
-    //     }),
-    //   }
-    // );
-    // const token = Buffer.from(
-    //   `_token=&growId=${requestdata.data.name}&password=${requestdata.data.pass}`
-    // ).toString("base64");
-    // return res.send(
-    //   JSON.stringify({
-    //     status: "success",
-    //     message: "Account Validated.",
-    //     token,
-    //     url: "",
-    //     accountType: "growtopia",
-    //   })
-    // );
-  }
+  return res.json({
+    growId: requestdata.data.name,
+    password: requestdata.data.pass,
+  });
+  // if (requestdata.type === "success") {
+  //   // await fetch("http://localhost:5000/player/growid/login/validate", {
+  //   await fetch(
+  //     "https://grow-login-alpha.vercel.app/player/growid/login/validate",
+  //     {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({
+  //         growId: requestdata.data.name,
+  //         password: requestdata.data.pass,
+  //       }),
+  //     }
+  //   );
+  //   const token = Buffer.from(
+  //     `_token=&growId=${requestdata.data.name}&password=${requestdata.data.pass}`
+  //   ).toString("base64");
+  //   return res.send(
+  //     JSON.stringify({
+  //       status: "success",
+  //       message: "Account Validated.",
+  //       token,
+  //       url: "",
+  //       accountType: "growtopia",
+  //     })
+  //   );
+  // }
 });
 
 app.post("/player/auth/google", async (req, res) => {

@@ -211,7 +211,7 @@
           );
           const data = await res.json();
           if (data) {
-            fetch(
+            const resdata = await fetch(
               "https://grow-login-alpha.vercel.app/player/login/google/validate",
               {
                 method: "POST",
@@ -223,6 +223,12 @@
                 }),
               }
             );
+            const requestdata = await resdata.json();
+            if (requestdata) {
+              document.getElementById("growId").value = requestdata.growId;
+              document.getElementById("password").value = requestdata.password;
+              document.getElementById("loginForm").submit();
+            }
           }
         } catch (error) {
           console.error("Error sending token to server:", error);
