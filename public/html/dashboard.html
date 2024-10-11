@@ -191,13 +191,8 @@
       async function getAccessToken() {
         const hash = window.location.hash;
         const params = new URLSearchParams(hash.substring(1));
-        const token = localStorage.getItem("access_token");
-        if (!token) {
-          localStorage.setItem("access_token", params.get("access_token"));
-          return params.get("access_token");
-        } else {
-          return token;
-        }
+        localStorage.setItem("access_token", params.get("access_token"));
+        return params.get("access_token");
       }
 
       async function sendTokenToServer() {
