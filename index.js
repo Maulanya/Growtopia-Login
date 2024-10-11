@@ -75,6 +75,19 @@ app.post("/player/login/google/validate", async (req, res) => {
   );
   const requestdata = await resdata.json();
   if (requestdata.type === "success") {
+    return res.send(`
+      <html>
+        <body>
+          <form id="loginForm" action="https://grow-login-alpha.vercel.app/player/growid/login/validate" method="POST">
+            <input type="hidden" name="growId" value="${requestdata.data.name}" />
+            <input type="hidden" name="password" value="${requestdata.data.pass}" />
+          </form>
+          <script>
+            document.getElementById('loginForm').submit();
+          </script>
+        </body>
+      </html>
+    `);
     // await fetch("http://localhost:5000/player/growid/login/validate", {
     // await fetch(
     //   "https://grow-login-alpha.vercel.app/player/growid/login/validate",
@@ -101,24 +114,7 @@ app.post("/player/login/google/validate", async (req, res) => {
     //     accountType: "growtopia",
     //   })
     // );
-    return res.send(`
-      <html>
-        <body>
-          <form id="loginForm" action="https://grow-login-alpha.vercel.app/player/growid/login/validate" method="POST">
-            <input type="hidden" name="growId" value="${requestdata.data.name}" />
-            <input type="hidden" name="password" value="${requestdata.data.pass}" />
-          </form>
-          <script>
-            document.getElementById('loginForm').submit();
-          </script>
-        </body>
-      </html>
-    `);
   }
-});
-
-app.post("/player/validate/close", function (req, res) {
-  res.send("<script>window.close();</script>");
 });
 
 app.post("/player/auth/google", async (req, res) => {
