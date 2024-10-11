@@ -104,6 +104,10 @@ app.post("/player/login/google/validate", async (req, res) => {
   }
 });
 
+app.post("/player/validate/close", function (req, res) {
+  res.send("<script>window.close();</script>");
+});
+
 app.post("/player/auth/google", async (req, res) => {
   try {
     const { data, error } = await supabaseClient.auth.signInWithOAuth({
@@ -160,7 +164,8 @@ app.post("/player/growid/login/validate", (req, res) => {
 
 app.get("/", (req, res) => {
   // res.send("Hello World");
-  res.sendFile(__dirname + "/public/html/dashboard.html");
+  // res.sendFile(__dirname + "/public/html/dashboard.html");
+  res.send("<script>window.close();</script>");
 });
 
 app.use(function (req, res) {
