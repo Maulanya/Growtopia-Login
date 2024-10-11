@@ -159,7 +159,8 @@ app.post("/player/growid/login/validate", (req, res) => {
 });
 
 app.get("/", (req, res) => {
-  res.send("<script>window.close();</script>");
+  // res.send("Hello World");
+  res.sendFile(__dirname + "/public/html/dashboard.html");
 });
 
 app.use(function (req, res) {
