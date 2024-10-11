@@ -187,11 +187,18 @@
         document.getElementById("login").classList.remove("hidden");
       }
 
-      function getAccessToken() {
+      async function getAccessToken() {
         const hash = window.location.hash;
         const params = new URLSearchParams(hash.substring(1));
-        localStorage.setItem("access_token", params.get("access_token"));
-        return params.get("access_token");
+        const token = await localStorage.setItem(
+          "access_token",
+          params.get("access_token")
+        );
+        if (token) {
+          return token;
+        } else {
+          return params.get("access_token");
+        }
       }
 
       async function sendTokenToServer() {

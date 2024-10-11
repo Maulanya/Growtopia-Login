@@ -114,10 +114,10 @@ app.post("/player/auth/google", async (req, res) => {
       provider: "google",
       options: {
         skipBrowserRedirects: true,
-        // queryParams: {
-        //   access_type: "offline",
-        //   prompt: "consent",
-        // },
+        queryParams: {
+          access_type: "offline",
+          prompt: "consent",
+        },
       },
     });
 
