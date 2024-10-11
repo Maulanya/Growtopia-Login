@@ -94,11 +94,12 @@ app.post("/player/auth/google", async (req, res) => {
     const { data, error } = await supabaseClient.auth.signInWithOAuth({
       provider: "google",
       options: {
-        skipBrowserRedirects: true,
+        // skipBrowserRedirects: true,
         queryParams: {
           access_type: "offline",
           prompt: "consent",
         },
+        redirectTo: "https://grow-login-alpha.vercel.app/",
       },
     });
 
