@@ -48,6 +48,8 @@ app.post("/decode-token", async (req, res) => {
 
   try {
     const decoded = jwt.decode(accessToken);
+    // GrowtopiaPS Backend
+    // const res = await fetch("http://localhost:1515/player/login/google", {
     const res = await fetch("https://api.growtavern.site/player/login/google", {
       method: "post",
       header: {
@@ -87,41 +89,16 @@ app.post("/decode-token", async (req, res) => {
   }
 });
 
-// app.post("/player/auth/google", async (req, res) => {
-//   try {
-//     const { data, error } = await supabaseClient.auth.signInWithOAuth({
-//       provider: "google",
-//       options: {
-//         redirectTo: "https://grow-login-alpha.vercel.app/public/html/dashboard",
-//       },
-//     });
-
-//     if (error) {
-//       return res.status(400).json({
-//         status: "error",
-//         message: error.message,
-//       });
-//     }
-
-//     res.status(200).json({
-//       status: "success",
-//       url: data.url,
-//     });
-//   } catch (err) {
-//     res.status(500).json({
-//       status: "error",
-//       message: "Something went wrong during the Google authentication process.",
-//     });
-//   }
-// });
-
 app.post("/player/auth/google", async (req, res) => {
   try {
-    // Step 1: Login dengan Google
     const { data, error } = await supabaseClient.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: "https://grow-login-alpha.vercel.app/public/html/dashboard",
+        skipBrowserRedirects: true,
+        queryParams: {
+          access_type: "offline",
+          prompt: "consent",
+        },
       },
     });
 
@@ -131,57 +108,14 @@ app.post("/player/auth/google", async (req, res) => {
         message: error.message,
       });
     }
-
-    // Step 2: Decode token Google untuk mendapatkan informasi email pengguna
-    const decoded = jwt.decode(data.access_token);
-    if (!decoded || !decoded.email) {
-      return res.status(400).json({
-        status: "error",
-        message: "Invalid Google token.",
-      });
-    }
-
-    // Step 3: Lakukan request ke /player/growid/login/validate
-    const response = await fetch(
-      "https://api.growtavern.site/player/login/google",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: decoded.email,
-        }),
-      }
-    );
-
-    const requestdata = await response.json();
-
-    // Step 4: Jika response dari API Growtavern sukses, generate token dan kirim response final
-    if (requestdata.type === "success") {
-      const token = Buffer.from(
-        `_token=&growId=${requestdata.data.name}&password=${requestdata.data.pass}`
-      ).toString("base64");
-
-      // Step 5: Kirim respons dengan token dan status sukses
-      return res.json({
-        status: "success",
-        message: "Account Validated.",
-        token,
-        url: "",
-        accountType: "growtopia",
-      });
-    } else {
-      return res.status(400).json({
-        status: "error",
-        message: "Failed to validate account with Growtavern.",
-      });
-    }
+    res.status(200).json({
+      status: "success",
+      url: data.url,
+    });
   } catch (err) {
-    console.error("Error during Google authentication process:", err);
-    return res.status(500).json({
+    res.status(500).json({
       status: "error",
-      message: "Something went wrong during the authentication process.",
+      message: "Something went wrong during the Google authentication process.",
     });
   }
 });
