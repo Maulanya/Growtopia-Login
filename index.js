@@ -48,20 +48,37 @@ app.post("/decode-token", async (req, res) => {
 
   try {
     const decoded = jwt.decode(accessToken);
+    if (decoded) {
+      return res.json(decoded.email);
+    }
     // GrowtopiaPS Backend
-    // const res = await fetch("http://localhost:1515/player/login/google", {
-    const res = await fetch("https://api.growtavern.site/player/login/google", {
-      method: "post",
-      header: {
+  } catch (error) {
+    return res.status(500).send("Error decoding token.");
+  }
+});
+
+app.post("/player/login/google/validate", async (req, res) => {
+  const { email } = req.body;
+  console.log(email);
+  // const resdata = await fetch("http://localhost:1515/player/login/google", {
+  const resdata = await fetch(
+    "https://api.growtavern.site/player/login/google",
+    {
+      method: "POST",
+      headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        email: decoded.email,
+        email,
       }),
-    });
-    const requestdata = await res.json();
-    if (requestdata.type === "success") {
-      fetch("/player/growid/login/validate", {
+    }
+  );
+  const requestdata = await resdata.json();
+  if (requestdata.type === "success") {
+    // await fetch("http://localhost:5000/player/growid/login/validate", {
+    await fetch(
+      "https://grow-login-alpha.vercel.app/player/growid/login/validate",
+      {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -70,22 +87,20 @@ app.post("/decode-token", async (req, res) => {
           growId: requestdata.data.name,
           password: requestdata.data.pass,
         }),
-      });
-      const token = Buffer.from(
-        `_token=&growId=${requestdata.data.name}&password=${requestdata.data.pass}`
-      ).toString("base64");
-      return res.send(
-        JSON.stringify({
-          status: "success",
-          message: "Account Validated.",
-          token,
-          url: "",
-          accountType: "growtopia",
-        })
-      );
-    }
-  } catch (error) {
-    return res.status(500).send("Error decoding token.");
+      }
+    );
+    const token = Buffer.from(
+      `_token=&growId=${requestdata.data.name}&password=${requestdata.data.pass}`
+    ).toString("base64");
+    return res.send(
+      JSON.stringify({
+        status: "success",
+        message: "Account Validated.",
+        token,
+        url: "",
+        accountType: "growtopia",
+      })
+    );
   }
 });
 
@@ -94,12 +109,11 @@ app.post("/player/auth/google", async (req, res) => {
     const { data, error } = await supabaseClient.auth.signInWithOAuth({
       provider: "google",
       options: {
-        // skipBrowserRedirects: true,
+        skipBrowserRedirects: true,
         queryParams: {
           access_type: "offline",
           prompt: "consent",
         },
-        redirectTo: "https://grow-login-alpha.vercel.app/",
       },
     });
 
