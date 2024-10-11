@@ -162,6 +162,7 @@
 
       function handleLoginGoogle() {
         fetch("https://grow-login-alpha.vercel.app/player/auth/google", {
+          // fetch("http://localhost:5000/player/auth/google", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -204,7 +205,7 @@
           const res = await fetch(
             "https://grow-login-alpha.vercel.app/decode-token",
             {
-              // await fetch("https://grow-login-alpha.vercel.app/decode-token", {
+              // const res = await fetch("http://localhost:5000/decode-token", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
@@ -219,6 +220,9 @@
             const resdata = await fetch(
               "https://grow-login-alpha.vercel.app/player/login/google/validate",
               {
+                // const resdata = await fetch(
+                //   "http://localhost:5000/player/login/google/validate",
+                //   {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",
