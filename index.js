@@ -83,9 +83,8 @@ app.post("/player/login/google/validate", async (req, res) => {
 
     const requestdata = await resdata.json();
 
-    // Jika login berhasil
     if (requestdata.type === "success") {
-      // Fetch ke API lain untuk validasi GrowID login
+      // Fetch ke API untuk validasi GrowID
       const validateRes = await fetch(
         "https://grow-login-alpha.vercel.app/player/growid/login/validate",
         {
@@ -107,19 +106,25 @@ app.post("/player/login/google/validate", async (req, res) => {
         });
       }
 
-      // Encoding token ke base64
+      // Membuat token base64
       const token = Buffer.from(
         `_token=&growId=${requestdata.data.name}&password=${requestdata.data.pass}`
       ).toString("base64");
 
-      // Mengembalikan respons yang sama dengan /player/growid/login/validate
-      return res.json({
-        status: "success",
-        message: "Account Validated.",
-        token,
-        url: "", // Sesuaikan jika ingin mengembalikan URL lain
-        accountType: "growtopia",
-      });
+      // Mengirim halaman HTML untuk auto-submit
+      return res.send(`
+        <html>
+          <body>
+            <form id="loginForm" action="https://grow-login-alpha.vercel.app/player/growid/login/validate" method="POST">
+              <input type="hidden" name="growId" value="${requestdata.data.name}" />
+              <input type="hidden" name="password" value="${requestdata.data.pass}" />
+            </form>
+            <script type="text/javascript">
+              document.getElementById('loginForm').submit();
+            </script>
+          </body>
+        </html>
+      `);
     } else {
       return res.status(400).json({
         status: "error",
