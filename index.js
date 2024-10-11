@@ -99,7 +99,6 @@ app.post("/player/auth/google", async (req, res) => {
           access_type: "offline",
           prompt: "consent",
         },
-        redirectTo: "https://localhost:5000/player/login/dashboard",
       },
     });
 
@@ -145,7 +144,8 @@ app.post("/player/growid/login/validate", (req, res) => {
 });
 
 app.get("/", (req, res) => {
-  res.send("Hello World");
+  // res.send("Hello World");
+  res.sendFile(__dirname + "/public/html/dashboard.html");
 });
 
 app.use(function (req, res) {
