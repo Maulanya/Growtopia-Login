@@ -99,6 +99,7 @@ app.post("/player/auth/google", async (req, res) => {
           access_type: "offline",
           prompt: "consent",
         },
+        redirectTo: "https://localhost:5000/player/login/dashboard",
       },
     });
 
