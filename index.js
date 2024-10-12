@@ -59,19 +59,19 @@ app.post("/decode-token", async (req, res) => {
 
 app.post("/player/login/google/validate", async (req, res) => {
   const { email } = req.body;
-  // const resdata = await fetch("http://localhost:1515/player/login/google", {
-  const resdata = await fetch(
-    "https://api.growtavern.site:1515/player/login/google",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email,
-      }),
-    }
-  );
+  console.log(email);
+  const resdata = await fetch("http://localhost:1515/player/login/google", {
+    // const resdata = await fetch(
+    //   "https://api.growtavern.site:1515/player/login/google",
+    //   {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email,
+    }),
+  });
   const requestdata = await resdata.json();
   return res.json({
     growId: requestdata.data.name,

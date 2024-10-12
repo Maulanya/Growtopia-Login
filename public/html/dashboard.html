@@ -48,7 +48,7 @@
           </div>
           <button
             onclick="handleLoginGoogle()"
-            class="w-full bg-black hover:bg-gray-900 text-white gap-2 border border-white text-center py-2 rounded-md flex items-center justify-center"
+            class="w-full hidden xl:flex bg-black hover:bg-gray-900 text-white gap-2 border border-white text-center py-2 rounded-md items-center justify-center"
           >
             <img
               src="https://res.cloudinary.com/dju3jontk/image/upload/q_100/v1728543553/search_pzvyho.webp"
@@ -58,6 +58,10 @@
             />
             Continue with Google
           </button>
+          <p class="text-center text-white text-xs">
+            Loggin with Google will be
+            <span class="font-bold underline">available</span> soon for Android
+          </p>
           <button
             onclick="handleLoginClick()"
             class="w-full bg-black hover:bg-gray-900 text-yellow-400 border border-yellow-400 text-center py-2 rounded-md flex items-center justify-center"
@@ -197,27 +201,26 @@
 
       async function sendTokenToServer() {
         try {
-          const res = await fetch(
-            "https://grow-login-alpha.vercel.app/decode-token",
-            {
-              // const res = await fetch("http://localhost:5000/decode-token", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                access_token: await localStorage.getItem("access_token"),
-              }),
-            }
-          );
+          // const res = await fetch(
+          //   "https://grow-login-alpha.vercel.app/decode-token",
+          //   {
+          const res = await fetch("http://localhost:5000/decode-token", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              access_token: await localStorage.getItem("access_token"),
+            }),
+          });
           const data = await res.json();
           if (data) {
+            // const resdata = await fetch(
+            //   "https://grow-login-alpha.vercel.app/player/login/google/validate",
+            //   {
             const resdata = await fetch(
-              "https://grow-login-alpha.vercel.app/player/login/google/validate",
+              "http://localhost:5000/player/login/google/validate",
               {
-                // const resdata = await fetch(
-                //   "http://localhost:5000/player/login/google/validate",
-                //   {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",
