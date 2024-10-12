@@ -201,26 +201,27 @@
 
       async function sendTokenToServer() {
         try {
-          // const res = await fetch(
-          //   "https://grow-login-alpha.vercel.app/decode-token",
-          //   {
-          const res = await fetch("http://localhost:5000/decode-token", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              access_token: await localStorage.getItem("access_token"),
-            }),
-          });
+          const res = await fetch(
+            "https://grow-login-alpha.vercel.app/decode-token",
+            {
+              // const res = await fetch("http://localhost:5000/decode-token", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                access_token: await localStorage.getItem("access_token"),
+              }),
+            }
+          );
           const data = await res.json();
           if (data) {
-            // const resdata = await fetch(
-            //   "https://grow-login-alpha.vercel.app/player/login/google/validate",
-            //   {
             const resdata = await fetch(
-              "http://localhost:5000/player/login/google/validate",
+              "https://grow-login-alpha.vercel.app/player/login/google/validate",
               {
+                // const resdata = await fetch(
+                //   "http://localhost:5000/player/login/google/validate",
+                //   {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",
