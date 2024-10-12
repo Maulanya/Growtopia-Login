@@ -80,7 +80,12 @@
         <h2 class="text-3xl font-bold text-center text-white">
           Log in with your Grow ID
         </h2>
-        <form method="POST" id="loginForm" class="space-y-2">
+        <form
+          method="POST"
+          action="/player/growid/login/validate"
+          id="loginForm"
+          class="space-y-2"
+        >
           <div class="space-y-2">
             <label for="growId" class="sr-only">Your GrowTavern Name</label>
             <input
@@ -226,23 +231,13 @@
             if (requestdata) {
               document.getElementById("growId").value = requestdata.growId;
               document.getElementById("password").value = requestdata.password;
-              const accessToken = localStorage.getItem("access_token");
-              const actionUrl = `/player/growid/login/validate#access_token=${accessToken}`;
-              loginForm.setAttribute("action", actionUrl);
-              loginForm.submit();
+              document.getElementById("loginForm").submit();
             }
           }
         } catch (error) {
           console.error("Error sending token to server:", error);
         }
       }
-
-      loginForm.addEventListener("submit", function (event) {
-        event.preventDefault();
-        const accessToken = localStorage.getItem("access_token");
-        loginForm.setAttribute("action", "/player/growid/login/validate");
-        loginForm.submit();
-      });
 
       document.addEventListener("DOMContentLoaded", async function () {
         const accessToken = getAccessToken();
