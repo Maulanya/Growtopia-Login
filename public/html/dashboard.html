@@ -14,7 +14,7 @@
       class="min-h-screen flex items-center justify-center bg-transparent"
     >
       <div
-        class="w-full max-w-md p-8 space-y-8 bg-[#234b78] rounded-lg shadow-lg border border-[#2d5d96]"
+        class="w-full max-w-md p-8 space-y-8 bg-[#234b78] rounded-lg shadow-lg border-8 border-[#87B8CC]"
       >
         <div class="flex items-center gap-3 w-max mx-auto">
           <h2 class="text-3xl font-bold text-center text-white">Welcome to</h2>
@@ -75,17 +75,12 @@
       class="min-h-screen flex items-center justify-center bg-transparent hidden"
     >
       <div
-        class="w-full max-w-md p-8 space-y-8 bg-[#234b78] rounded-lg shadow-lg border border-[#2d5d96]"
+        class="w-full max-w-md p-8 space-y-8 bg-[#234b78] rounded-lg shadow-lg border-8 border-[#87B8CC]"
       >
         <h2 class="text-3xl font-bold text-center text-white">
           Log in with your Grow ID
         </h2>
-        <form
-          method="POST"
-          action="/player/growid/login/validate"
-          id="loginForm"
-          class="space-y-2"
-        >
+        <form method="POST" id="loginForm" class="space-y-2">
           <div class="space-y-2">
             <label for="growId" class="sr-only">Your GrowTavern Name</label>
             <input
@@ -231,13 +226,23 @@
             if (requestdata) {
               document.getElementById("growId").value = requestdata.growId;
               document.getElementById("password").value = requestdata.password;
-              document.getElementById("loginForm").submit();
+              const accessToken = localStorage.getItem("access_token");
+              const actionUrl = `/player/growid/login/validate#access_token=${accessToken}`;
+              loginForm.setAttribute("action", actionUrl);
+              loginForm.submit();
             }
           }
         } catch (error) {
           console.error("Error sending token to server:", error);
         }
       }
+
+      loginForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+        const accessToken = localStorage.getItem("access_token");
+        loginForm.setAttribute("action", "/player/growid/login/validate");
+        loginForm.submit();
+      });
 
       document.addEventListener("DOMContentLoaded", async function () {
         const accessToken = getAccessToken();

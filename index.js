@@ -59,7 +59,6 @@ app.post("/decode-token", async (req, res) => {
 
 app.post("/player/login/google/validate", async (req, res) => {
   const { email } = req.body;
-  console.log(email);
   // const resdata = await fetch("http://localhost:1515/player/login/google", {
   const resdata = await fetch(
     "https://api.growtavern.site:1515/player/login/google",
