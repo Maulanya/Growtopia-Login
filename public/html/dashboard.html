@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="styleoutput.css" />
     <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.js"></script>
   </head>
   <body>
@@ -48,7 +48,7 @@
           </div>
           <button
             onclick="handleLoginGoogle()"
-            class="w-full bg-black hover:bg-gray-900 text-white gap-2 border border-white text-center py-2 rounded-md flex items-center justify-center"
+            class="w-full bg-black hover:bg-gray-900 text-white gap-2 border border-white text-center py-2 rounded-md portrait:flex landscape:hidden items-center justify-center"
           >
             <img
               src="https://res.cloudinary.com/dju3jontk/image/upload/q_100/v1728543553/search_pzvyho.webp"
@@ -58,7 +58,9 @@
             />
             Continue with Google
           </button>
-          <p class="text-center text-white text-xs">
+          <p
+            class="text-center portrait:hidden landscape:block text-white text-xs"
+          >
             Loggin with Google will be
             <span class="font-bold underline">available</span> soon for Android
           </p>

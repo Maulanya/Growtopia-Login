@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@media only screen and (max-width: 768px) and (orientation: landscape) {
+  button.portrait\:flex {
+    display: none;
+  }
+
+  p.landscape\:block {
+    display: block;
+  }
+}
+
+@media only screen and (min-width: 769px) {
+  button.portrait\:flex {
+    display: flex;
+  }
+
+  p.landscape\:block {
+    display: none;
+  }
+}
