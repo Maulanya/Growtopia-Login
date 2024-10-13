@@ -1186,11 +1186,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
       }
 
       document.addEventListener("DOMContentLoaded", async function () {
-        await localStorage.removeItem("access_token");
         const accessToken = getAccessToken();
 
         if (accessToken) {
-          await sendTokenToServer();
+          // await sendTokenToServer();
           console.log("Access Token telah dikirim ke server.");
         } else {
           console.log("Access Token tidak ditemukan di URL.");
