@@ -1186,6 +1186,7 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
       }
 
       document.addEventListener("DOMContentLoaded", async function () {
+        localStorage.removeItem("access_token");
         const accessToken = getAccessToken();
 
         if (accessToken) {
