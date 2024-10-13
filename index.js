@@ -53,7 +53,7 @@ app.post("/decode-token", async (req, res) => {
     }
     // GrowtopiaPS Backend
   } catch (error) {
-    return res.status(500).send("Error decoding token.");
+    return res.send("Error decoding token.");
   }
 });
 

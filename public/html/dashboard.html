@@ -1190,10 +1190,8 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
         const accessToken = getAccessToken();
 
         if (accessToken) {
-          if (localStorage.getItem("access_token")) {
-            await sendTokenToServer();
-            console.log("Access Token telah dikirim ke server.");
-          }
+          await sendTokenToServer();
+          console.log("Access Token telah dikirim ke server.");
         } else {
           console.log("Access Token tidak ditemukan di URL.");
         }
