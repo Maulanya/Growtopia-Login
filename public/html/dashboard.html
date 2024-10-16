@@ -621,6 +621,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
         min-height: 100vh;
       }
 
+      .w-\[500px\] {
+        width: 500px;
+      }
+
       .w-full {
         width: 100%;
       }
@@ -801,11 +805,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
         color: rgb(255 255 255 / var(--tw-text-opacity));
       }
 
-      .text-yellow-400 {
-        --tw-text-opacity: 1;
-        color: rgb(250 204 21 / var(--tw-text-opacity));
-      }
-
       .underline {
         text-decoration-line: underline;
       }
@@ -947,14 +946,11 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
       }
     </style>
   </head>
-  <body>
+  <body class="min-h-screen flex items-center justify-center bg-transparent">
     <!-- dashboard -->
-    <div
-      id="dashboard"
-      class="min-h-screen flex items-center justify-center bg-transparent"
-    >
+    <div id="dashboard">
       <div
-        class="w-full max-w-md p-8 space-y-8 bg-[#234b78] rounded-lg shadow-lg border-8 border-[#87B8CC]"
+        class="w-[500px] max-w-md p-8 space-y-8 bg-[#234b78] rounded-lg shadow-lg border-8 border-[#87B8CC]"
       >
         <div class="flex items-center gap-3 w-max mx-auto">
           <h2 class="text-3xl font-bold text-center text-white">Welcome to</h2>
@@ -988,7 +984,7 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
           </div>
           <button
             onclick="handleLoginGoogle()"
-            class="w-full bg-black hover:bg-gray-900 text-white gap-2 border border-white text-center py-2 rounded-md portrait:flex landscape:hidden items-center justify-center"
+            class="w-full bg-black hover:bg-gray-900 font-bold text-white gap-2 border border-white text-center py-2 rounded-md portrait:flex landscape:hidden items-center justify-center"
           >
             <img
               src="https://res.cloudinary.com/dju3jontk/image/upload/q_100/v1728543553/search_pzvyho.webp"
@@ -1006,22 +1002,25 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
           </p>
           <button
             onclick="handleLoginClick()"
-            class="w-full bg-black hover:bg-gray-900 text-yellow-400 border border-yellow-400 text-center py-2 rounded-md flex items-center justify-center"
+            class="w-full bg-black hover:bg-gray-900 gap-2 font-bold text-white border border-yellow-400 text-center py-2 rounded-md flex items-center justify-center"
           >
-            <span class="mr-2 text-2xl font-bold">G</span>
-            growTavern Login
+            <!-- <span class="mr-2 text-2xl font-bold">G</span> -->
+            <img
+              src="https://res.cloudinary.com/dju3jontk/image/upload/q_100/v1729051025/btn_logo_gt_e8vh5y.webp"
+              alt="GrowTavern"
+              class="h-5 object-fit"
+              sizes="100vw"
+            />
+            Growtavern Login
           </button>
         </div>
       </div>
     </div>
 
     <!-- login -->
-    <div
-      id="login"
-      class="min-h-screen flex items-center justify-center bg-transparent hidden"
-    >
+    <div id="login" class="hidden">
       <div
-        class="w-full max-w-md p-8 space-y-8 bg-[#234b78] rounded-lg shadow-lg border-8 border-[#87B8CC]"
+        class="w-[500px] max-w-md p-8 space-y-8 bg-[#234b78] rounded-lg shadow-lg border-8 border-[#87B8CC]"
       >
         <h2 class="text-3xl font-bold text-center text-white">
           Log in with your Grow ID
@@ -1062,7 +1061,9 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
             >
           </div>
           <div class="text-center">
-            <a href="#" class="text-[#ff6b35] hover:underline"
+            <a
+              href="https://discord.gg/HnDsWK67sV"
+              class="text-[#ff6b35] hover:underline"
               >Forgot Password</a
             >
           </div>
