@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
     <!-- <link rel="stylesheet" href="styleoutput.css" /> -->
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.js"></script>
     <style>
       *,
       ::before,
@@ -600,10 +601,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
         margin-right: 0.5rem;
       }
 
-      .mt-2 {
-        margin-top: 0.5rem;
-      }
-
       .flex {
         display: flex;
       }
@@ -624,6 +621,14 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
         min-height: 100vh;
       }
 
+      .w-10 {
+        width: 2.5rem;
+      }
+
+      .w-11 {
+        width: 2.75rem;
+      }
+
       .w-\[500px\] {
         width: 500px;
       }
@@ -635,18 +640,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
       .w-max {
         width: -moz-max-content;
         width: max-content;
-      }
-
-      .w-5 {
-        width: 1.25rem;
-      }
-
-      .w-10 {
-        width: 2.5rem;
-      }
-
-      .w-11 {
-        width: 2.75rem;
       }
 
       .max-w-md {
@@ -692,6 +685,12 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
         --tw-space-y-reverse: 0;
         margin-top: calc(2rem * calc(1 - var(--tw-space-y-reverse)));
         margin-bottom: calc(2rem * var(--tw-space-y-reverse));
+      }
+
+      .space-y-3 > :not([hidden]) ~ :not([hidden]) {
+        --tw-space-y-reverse: 0;
+        margin-top: calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));
+        margin-bottom: calc(0.75rem * var(--tw-space-y-reverse));
       }
 
       .rounded-lg {
@@ -754,17 +753,8 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
         background-color: rgb(0 0 0 / var(--tw-bg-opacity));
       }
 
-      .bg-red-500 {
-        --tw-bg-opacity: 1;
-        background-color: rgb(239 68 68 / var(--tw-bg-opacity));
-      }
-
       .bg-transparent {
         background-color: transparent;
-      }
-
-      .p-0 {
-        padding: 0px;
       }
 
       .p-8 {
@@ -969,7 +959,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
         }
       }
     </style>
-    <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.js"></script>
   </head>
   <body class="min-h-screen flex items-center justify-center bg-transparent">
     <!-- dashboard -->
@@ -1105,7 +1094,7 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
     <!-- register -->
     <div id="register" class="hidden">
       <div
-        class="w-[500px] max-w-md p-8 space-y-8 bg-[#234b78] rounded-lg shadow-lg border-8 border-[#87B8CC]"
+        class="w-[500px] max-w-md p-8 space-y-3 bg-[#234b78] rounded-lg shadow-lg border-8 border-[#87B8CC]"
       >
         <h2 class="text-3xl font-bold text-center text-white">
           Create your account
