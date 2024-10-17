@@ -1215,14 +1215,40 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
         });
       });
 
+      // Fungsi untuk membuat cookie dengan waktu kedaluwarsa
+      function setCookie(name, value, days) {
+        const date = new Date();
+        date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000); // Waktu dalam milidetik
+        const expires = "expires=" + date.toUTCString();
+        document.cookie = name + "=" + value + ";" + expires + ";path=/";
+      }
+
+      // Fungsi untuk mendapatkan nilai cookie
+      function getCookie(name) {
+        const cookieArr = document.cookie.split(";"); // Memecah cookie menjadi array
+        for (let i = 0; i < cookieArr.length; i++) {
+          let cookie = cookieArr[i].trim(); // Trim white space
+          if (cookie.indexOf(name + "=") === 0) {
+            return cookie.substring(name.length + 1, cookie.length); // Mengembalikan nilai cookie
+          }
+        }
+        return null; // Mengembalikan null jika cookie tidak ditemukan
+      }
+
       async function handleCreateAcc() {
-        const growId = document.getElementById("name").value; // Fixed: get value from name field
-        const password = document.getElementById("pass").value; // Fixed: get value from pass field
+        // Memeriksa apakah cookie 'growId' sudah ada
+        if (getCookie("growId")) {
+          alert("Please wait 1 month for you to create an account.");
+          return; // Jika cookie ada, hentikan proses registrasi
+        }
+
+        const growId = document.getElementById("name").value;
+        const password = document.getElementById("pass").value;
         const VerifyPassword = document.getElementById("verifypassword").value;
         const email = document.getElementById("email").value;
         const gender = document.querySelector(
           'input[name="gender"]:checked'
-        )?.value; // Get checked radio button
+        )?.value;
 
         if (password !== VerifyPassword) {
           alert("Passwords do not match. Please try again.");
@@ -1251,15 +1277,17 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
             }
           );
 
-          if (!response.ok) {
-            throw new Error(
-              "Network response was not ok " + response.statusText
-            );
-          }
-
           const result = await response.json();
-          alert("Account created successfully!"); // Show success message
-          // Optionally, redirect or reset the form here
+          if (result.type === "account_created") {
+            alert(result.message);
+            document.getElementById("dashboard").classList.remove("hidden");
+            document.getElementById("register").classList.add("hidden");
+
+            // Set cookie 'growId' yang akan expired dalam 1 bulan
+            setCookie("growId", growId, 30); // Cookie expired dalam 30 hari
+          } else {
+            alert(result.message);
+          }
         } catch (error) {
           console.error("Error during account creation:", error);
           alert(
