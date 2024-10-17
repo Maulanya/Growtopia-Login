@@ -1269,11 +1269,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
           const result = await response.json();
           if (result.type === "account_created") {
             alert(result.message);
-            document.getElementById("dashboard").classList.remove("hidden");
+            document.getElementById("login").classList.remove("hidden");
             document.getElementById("register").classList.add("hidden");
 
-            // Set cookie 'growId' yang akan expired dalam 1 bulan
-            setCookie("growId", growId, 30); // Cookie expired dalam 30 hari
+            setCookie("growId", growId, 30);
           } else {
             alert(result.message);
           }
