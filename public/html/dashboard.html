@@ -1293,9 +1293,16 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
       }
 
       async function handleCreateAcc() {
+        delCookie("growId");
         // Memeriksa apakah cookie 'growId' sudah ada
         if (getCookie("growId")) {
-          alert("Please wait 1 month for you to create an account.");
+          document.getElementById("modal").classList.remove("hidden");
+          document.getElementById("modal").classList.add("flex");
+          document.getElementById("modal-message").innerHTML =
+            "Please wait 1 month for you to create an account.";
+          setTimeout(() => {
+            document.getElementById("modal").classList.add("hidden");
+          }, 2000);
           return; // Jika cookie ada, hentikan proses registrasi
         }
 
@@ -1308,12 +1315,24 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
         )?.value;
 
         if (password !== VerifyPassword) {
-          alert("Passwords do not match. Please try again.");
+          document.getElementById("modal").classList.remove("hidden");
+          document.getElementById("modal").classList.add("flex");
+          document.getElementById("modal-message").innerHTML =
+            "Passwords do not match. Please try again.";
+          setTimeout(() => {
+            document.getElementById("modal").classList.add("hidden");
+          }, 2000);
           return;
         }
 
         if (!growId || !password || !email || !gender) {
-          alert("Please fill in all fields.");
+          document.getElementById("modal").classList.remove("hidden");
+          document.getElementById("modal").classList.add("flex");
+          document.getElementById("modal-message").innerHTML =
+            "Please fill in all fields.";
+          setTimeout(() => {
+            document.getElementById("modal").classList.add("hidden");
+          }, 2000);
           return;
         }
 
@@ -1342,7 +1361,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
             document.getElementById("modal-message").innerHTML = result.message;
             document.getElementById("login").classList.remove("hidden");
             document.getElementById("register").classList.add("hidden");
-            delCookie("growId");
             // setCookie("growId", growId, 30);
           } else {
             document.getElementById("modal").classList.remove("hidden");
@@ -1351,9 +1369,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
           }
         } catch (error) {
           console.error("Error during account creation:", error);
-          alert(
-            "There was a problem creating your account. Please try again later."
-          );
+          document.getElementById("modal").classList.remove("hidden");
+          document.getElementById("modal").classList.add("flex");
+          document.getElementById("modal-message").innerHTML =
+            "There was a problem creating your account. Please try again later.";
         } finally {
           setTimeout(() => {
             document.getElementById("modal").classList.add("hidden");
