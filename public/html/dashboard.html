@@ -1293,7 +1293,7 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
       }
 
       async function handleCreateAcc() {
-        delCookie("growId");
+        // delCookie("growId");
         // Memeriksa apakah cookie 'growId' sudah ada
         if (getCookie("growId")) {
           document.getElementById("modal").classList.remove("hidden");
@@ -1361,7 +1361,7 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
             document.getElementById("modal-message").innerHTML = result.message;
             document.getElementById("login").classList.remove("hidden");
             document.getElementById("register").classList.add("hidden");
-            // setCookie("growId", growId, 30);
+            setCookie("growId", growId, 30);
           } else {
             document.getElementById("modal").classList.remove("hidden");
             document.getElementById("modal").classList.add("flex");
