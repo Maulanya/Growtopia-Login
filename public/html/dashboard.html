@@ -1275,6 +1275,11 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
         document.cookie = name + "=" + value + ";" + expires + ";path=/";
       }
 
+      function delCookie(name) {
+        document.cookie =
+          name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      }
+
       // Fungsi untuk mendapatkan nilai cookie
       function getCookie(name) {
         const cookieArr = document.cookie.split(";"); // Memecah cookie menjadi array
@@ -1337,8 +1342,8 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
             document.getElementById("modal-message").innerHTML = result.message;
             document.getElementById("login").classList.remove("hidden");
             document.getElementById("register").classList.add("hidden");
-
-            setCookie("growId", growId, 30);
+            delCookie("growId");
+            // setCookie("growId", growId, 30);
           } else {
             document.getElementById("modal").classList.remove("hidden");
             document.getElementById("modal").classList.add("flex");
