@@ -605,17 +605,8 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
         margin-right: auto;
       }
 
-      .mx-0 {
-        margin-left: 0px;
-        margin-right: 0px;
-      }
-
       .mr-2 {
         margin-right: 0.5rem;
-      }
-
-      .mt-10 {
-        margin-top: 2.5rem;
       }
 
       .mt-5 {
@@ -624,10 +615,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
       .flex {
         display: flex;
-      }
-
-      .grid {
-        display: grid;
       }
 
       .hidden {
@@ -640,6 +627,18 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
       .h-5 {
         height: 1.25rem;
+      }
+
+      .h-auto {
+        height: auto;
+      }
+
+      .h-8 {
+        height: 2rem;
+      }
+
+      .h-9 {
+        height: 2.25rem;
       }
 
       .min-h-screen {
@@ -667,6 +666,18 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
         width: max-content;
       }
 
+      .w-3 {
+        width: 0.75rem;
+      }
+
+      .w-8 {
+        width: 2rem;
+      }
+
+      .w-9 {
+        width: 2.25rem;
+      }
+
       .max-w-md {
         max-width: 28rem;
       }
@@ -676,10 +687,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
           rotate(var(--tw-rotate)) skewX(var(--tw-skew-x))
           skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x))
           scaleY(var(--tw-scale-y));
-      }
-
-      .place-content-center {
-        place-content: center;
       }
 
       .items-center {
@@ -696,6 +703,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
       .gap-3 {
         gap: 0.75rem;
+      }
+
+      .gap-1 {
+        gap: 0.25rem;
       }
 
       .space-y-2 > :not([hidden]) ~ :not([hidden]) {
@@ -734,16 +745,12 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
         border-width: 1px;
       }
 
-      .border-8 {
-        border-width: 8px;
-      }
-
-      .border-2 {
-        border-width: 2px;
-      }
-
       .border-4 {
         border-width: 4px;
+      }
+
+      .border-8 {
+        border-width: 8px;
       }
 
       .border-t {
@@ -792,15 +799,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
       .bg-transparent {
         background-color: transparent;
-      }
-
-      .bg-red-500 {
-        --tw-bg-opacity: 1;
-        background-color: rgb(239 68 68 / var(--tw-bg-opacity));
-      }
-
-      .p-8 {
-        padding: 2rem;
       }
 
       .p-5 {
@@ -1022,7 +1020,7 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
       </div>
       <div id="dashboard">
         <div
-          class="w-[500px] max-w-md p-8 space-y-8 bg-[#234b78] rounded-lg shadow-lg border-8 border-[#87B8CC]"
+          class="w-[500px] max-w-md p-5 space-y-8 bg-[#234b78] rounded-lg shadow-lg border-8 border-[#87B8CC]"
         >
           <div class="flex items-center gap-3 w-max mx-auto">
             <h2 class="text-3xl font-bold text-center text-white">
@@ -1096,7 +1094,7 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
       <!-- login -->
       <div id="login" class="hidden">
         <div
-          class="w-[500px] max-w-md p-8 space-y-8 bg-[#234b78] rounded-lg shadow-lg border-8 border-[#87B8CC]"
+          class="w-[500px] max-w-md p-5 space-y-3 bg-[#234b78] rounded-lg shadow-lg border-8 border-[#87B8CC]"
         >
           <h2 class="text-3xl font-bold text-center text-white">
             Log in with your Grow ID
@@ -1155,7 +1153,7 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
       <!-- register -->
       <div id="register" class="hidden">
         <div
-          class="w-[500px] max-w-md p-8 space-y-3 bg-[#234b78] rounded-lg shadow-lg border-8 border-[#87B8CC]"
+          class="w-[500px] max-w-md p-5 space-y-3 bg-[#234b78] rounded-lg shadow-lg border-8 border-[#87B8CC]"
         >
           <h2 class="text-3xl font-bold text-center text-white">
             Create your account
@@ -1193,7 +1191,7 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
               />
               <!-- </div> -->
             </div>
-            <div class="space-y-2">
+            <div>
               <label for="growId" class="sr-only">Enter your Email</label>
               <input
                 id="email"
@@ -1203,23 +1201,25 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
                 class="w-full px-3 py-2 bg-[#1e3a5f] border border-[#2d5d96] rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#3d7dcc] focus:border-transparent"
               />
             </div>
-            <div class="space-y-2">
+            <div>
               <h2 class="text-white font-bold">Gender</h2>
-              <div class="flex items-center">
-                <div class="flex items-center">
+              <div class="flex items-center gap-2 text-white">
+                <div class="flex items-center gap-1">
                   <input type="radio" value="man" name="gender" id="man" />
+                  <label for="man">Man</label>
                   <img
-                    src="https://res.cloudinary.com/dju3jontk/image/upload/q_100/v1729135206/Screenshot_2024-10-17_110209-removebg-preview_pwj4e9.webp"
+                    src="https://res.cloudinary.com/dju3jontk/image/upload/q_100/v1729314214/man_hysw2b.webp"
                     alt="man"
-                    class="w-10"
+                    class="w-max h-5"
                   />
                 </div>
-                <div class="flex items-center">
+                <div class="flex items-center gap-1">
                   <input type="radio" value="woman" name="gender" id="woman" />
+                  <label for="woman">Woman</label>
                   <img
-                    src="https://res.cloudinary.com/dju3jontk/image/upload/q_100/v1729135207/Screenshot_2024-10-17_110234-removebg-preview_iv9slx.webp"
+                    src="https://res.cloudinary.com/dju3jontk/image/upload/q_100/v1729314469/woman_jlfric.webp"
                     alt="woman"
-                    class="w-11"
+                    class="w-max h-5"
                   />
                 </div>
               </div>
