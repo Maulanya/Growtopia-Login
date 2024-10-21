@@ -1253,18 +1253,17 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
           passwordInput.value = savedPassword || "";
           keepLoggedInCheckbox.checked = true;
         }
-
-        loginForm.addEventListener("submit", function () {
-          if (keepLoggedInCheckbox.checked) {
-            localStorage.setItem("growId", growIdInput.value);
-            localStorage.setItem("password", passwordInput.value);
-            localStorage.setItem("keepLoggedIn", true);
-          } else {
-            localStorage.removeItem("growId");
-            localStorage.removeItem("password");
-            localStorage.removeItem("keepLoggedIn");
-          }
-        });
+      });
+      loginForm.addEventListener("submit", function () {
+        if (keepLoggedInCheckbox.checked) {
+          localStorage.setItem("growId", growIdInput.value);
+          localStorage.setItem("password", passwordInput.value);
+          localStorage.setItem("keepLoggedIn", true);
+        } else {
+          localStorage.removeItem("growId");
+          localStorage.removeItem("password");
+          localStorage.removeItem("keepLoggedIn");
+        }
       });
 
       // Fungsi untuk membuat cookie dengan waktu kedaluwarsa
