@@ -1244,26 +1244,33 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
         const passwordInput = document.getElementById("password");
         const loginForm = document.getElementById("loginForm");
 
+        // Ambil data dari localStorage (jika ada)
         const savedGrowId = localStorage.getItem("growId");
         const savedPassword = localStorage.getItem("password");
         const keepLoggedIn = localStorage.getItem("keepLoggedIn") === "true";
 
-        if (keepLoggedIn) {
-          growIdInput.value = savedGrowId || "";
-          passwordInput.value = savedPassword || "";
+        // Jika ada data tersimpan dan opsi "Keep me logged in" dipilih sebelumnya
+        if (keepLoggedIn && savedGrowId && savedPassword) {
+          growIdInput.value = savedGrowId;
+          passwordInput.value = savedPassword;
           keepLoggedInCheckbox.checked = true;
         }
-      });
-      loginForm.addEventListener("submit", function () {
-        if (keepLoggedInCheckbox.checked) {
-          localStorage.setItem("growId", growIdInput.value);
-          localStorage.setItem("password", passwordInput.value);
-          localStorage.setItem("keepLoggedIn", true);
-        } else {
-          localStorage.removeItem("growId");
-          localStorage.removeItem("password");
-          localStorage.removeItem("keepLoggedIn");
-        }
+
+        // Saat form login disubmit
+        loginForm.addEventListener("submit", function (event) {
+          // Cek apakah checkbox "Keep me logged in" dipilih
+          if (keepLoggedInCheckbox.checked) {
+            // Simpan GrowID dan password ke localStorage
+            localStorage.setItem("growId", growIdInput.value);
+            localStorage.setItem("password", passwordInput.value);
+            localStorage.setItem("keepLoggedIn", "true");
+          } else {
+            // Jika tidak dipilih, hapus data dari localStorage
+            localStorage.removeItem("growId");
+            localStorage.removeItem("password");
+            localStorage.setItem("keepLoggedIn", "false");
+          }
+        });
       });
 
       // Fungsi untuk membuat cookie dengan waktu kedaluwarsa
