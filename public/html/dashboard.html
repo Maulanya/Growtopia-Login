@@ -580,14 +580,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
         border-width: 0;
       }
 
-      .visible {
-        visibility: visible;
-      }
-
-      .collapse {
-        visibility: collapse;
-      }
-
       .absolute {
         position: absolute;
       }
@@ -617,10 +609,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
         margin-bottom: 0.5rem;
       }
 
-      .mr-2 {
-        margin-right: 0.5rem;
-      }
-
       .mt-2 {
         margin-top: 0.5rem;
       }
@@ -633,24 +621,8 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
         box-sizing: border-box;
       }
 
-      .block {
-        display: block;
-      }
-
       .flex {
         display: flex;
-      }
-
-      .table {
-        display: table;
-      }
-
-      .grid {
-        display: grid;
-      }
-
-      .contents {
-        display: contents;
       }
 
       .hidden {
@@ -673,21 +645,8 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
         height: 120px;
       }
 
-      .h-max {
-        height: -moz-max-content;
-        height: max-content;
-      }
-
       .min-h-screen {
         min-height: 100vh;
-      }
-
-      .\!w-10 {
-        width: 2.5rem !important;
-      }
-
-      .w-10 {
-        width: 2.5rem;
       }
 
       .w-\[500px\] {
@@ -711,10 +670,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
         max-width: 28rem;
       }
 
-      .border-collapse {
-        border-collapse: collapse;
-      }
-
       .transform {
         transform: translate(var(--tw-translate-x), var(--tw-translate-y))
           rotate(var(--tw-rotate)) skewX(var(--tw-skew-x))
@@ -722,20 +677,8 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
           scaleY(var(--tw-scale-y));
       }
 
-      .resize {
-        resize: both;
-      }
-
       .flex-col {
         flex-direction: column;
-      }
-
-      .place-content-center {
-        place-content: center;
-      }
-
-      .items-start {
-        align-items: flex-start;
       }
 
       .items-center {
@@ -760,10 +703,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
       .gap-4 {
         gap: 1rem;
-      }
-
-      .gap-9 {
-        gap: 2.25rem;
       }
 
       .space-y-2 > :not([hidden]) ~ :not([hidden]) {
@@ -800,10 +739,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
       .border {
         border-width: 1px;
-      }
-
-      .border-2 {
-        border-width: 2px;
       }
 
       .border-4 {
@@ -858,11 +793,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
         background-color: rgb(0 0 0 / var(--tw-bg-opacity));
       }
 
-      .bg-red-500 {
-        --tw-bg-opacity: 1;
-        background-color: rgb(239 68 68 / var(--tw-bg-opacity));
-      }
-
       .bg-transparent {
         background-color: transparent;
       }
@@ -870,11 +800,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
       .object-contain {
         -o-object-fit: contain;
         object-fit: contain;
-      }
-
-      .object-fill {
-        -o-object-fit: fill;
-        object-fit: fill;
       }
 
       .p-5 {
@@ -901,11 +826,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
         padding-right: 1.25rem;
       }
 
-      .px-8 {
-        padding-left: 2rem;
-        padding-right: 2rem;
-      }
-
       .py-2 {
         padding-top: 0.5rem;
         padding-bottom: 0.5rem;
@@ -916,22 +836,8 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
         padding-bottom: 0.75rem;
       }
 
-      .py-5 {
-        padding-top: 1.25rem;
-        padding-bottom: 1.25rem;
-      }
-
       .text-center {
         text-align: center;
-      }
-
-      .font-GeorticBold {
-        font-family: Geortic-Bold, sans-serif;
-      }
-
-      .text-2xl {
-        font-size: 1.5rem;
-        line-height: 2rem;
       }
 
       .text-3xl {
@@ -1005,16 +911,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
           var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
       }
 
-      .outline {
-        outline-style: solid;
-      }
-
-      .filter {
-        filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast)
-          var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert)
-          var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-      }
-
       .transition {
         transition-property: color, background-color, border-color,
           text-decoration-color, fill, stroke, opacity, box-shadow, transform,
@@ -1047,6 +943,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
         font-family: "Geortic-Bold";
 
         src: url("./CenturyGothicPaneuropeanBold.ttf") format("truetype");
+      }
+
+      body {
+        font-family: "Geortic-Bold", sans-serif;
       }
 
       @media only screen and (max-width: 768px) and (orientation: landscape) {
@@ -1232,7 +1132,7 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
           <div class="flex items-center gap-4 w-full justify-center">
             <button
               onclick="handleLoginClick()"
-              class="font-GeorticBold box-border bg-[#234b78] text-base h-[120px] w-[90px] border-4 rounded-lg text-white border-[#87B8CC] px-5 py-3 flex flex-col justify-center items-center gap-2"
+              class="box-border bg-[#234b78] text-base h-[120px] w-[90px] border-4 rounded-lg text-white border-[#87B8CC] px-5 py-3 flex flex-col justify-center items-center gap-2"
             >
               <img
                 src="https://res.cloudinary.com/dju3jontk/image/upload/q_100/v1729051025/btn_logo_gt_e8vh5y.webp"
@@ -1244,7 +1144,7 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
             </button>
             <button
               onclick="handleRegisterClick()"
-              class="font-GeorticBold box-border bg-[#234b78] text-base h-[120px] w-[90px] border-4 rounded-lg text-white border-[#87B8CC] px-5 py-3 flex flex-col justify-center items-center gap-2"
+              class="box-border bg-[#234b78] text-base h-[120px] w-[90px] border-4 rounded-lg text-white border-[#87B8CC] px-5 py-3 flex flex-col justify-center items-center gap-2"
             >
               <img
                 src="https://res.cloudinary.com/dju3jontk/image/upload/q_100/v1729565391/user_iryw9o.webp"
@@ -1256,7 +1156,7 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
             </button>
             <a
               href="https://discord.gg/HnDsWK67sV"
-              class="font-GeorticBold box-border bg-[#234b78] text-base h-[120px] w-[90px] border-4 rounded-lg text-white border-[#87B8CC] px-5 py-3 flex flex-col justify-center items-center gap-2"
+              class="box-border bg-[#234b78] text-base h-[120px] w-[90px] border-4 rounded-lg text-white border-[#87B8CC] px-5 py-3 flex flex-col justify-center items-center gap-2"
             >
               <img
                 src="https://res.cloudinary.com/dju3jontk/image/upload/q_100/v1729564777/discord_fbzmin.webp"
@@ -1270,7 +1170,7 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
           <div
             class="border-4 border-[#87B8CC] w-full text-center px-5 py-2 mt-2 bg-[#234b78] rounded-lg"
           >
-            <p class="text-white font-GeorticBold text-xs">
+            <p class="text-white text-xs">
               Login System created by
               <a
                 href="https://discord.com/users/753298841712721961"
