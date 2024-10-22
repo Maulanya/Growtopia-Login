@@ -613,8 +613,24 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
         margin-top: 1.25rem;
       }
 
+      .mb-2 {
+        margin-bottom: 0.5rem;
+      }
+
+      .mt-2 {
+        margin-top: 0.5rem;
+      }
+
+      .box-border {
+        box-sizing: border-box;
+      }
+
       .flex {
         display: flex;
+      }
+
+      .grid {
+        display: grid;
       }
 
       .hidden {
@@ -629,28 +645,29 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
         height: 1.25rem;
       }
 
-      .h-auto {
-        height: auto;
+      .h-16 {
+        height: 4rem;
       }
 
-      .h-8 {
-        height: 2rem;
+      .h-\[189px\] {
+        height: 189px;
       }
 
-      .h-9 {
-        height: 2.25rem;
+      .h-\[150px\] {
+        height: 150px;
+      }
+
+      .h-\[120px\] {
+        height: 120px;
+      }
+
+      .h-max {
+        height: -moz-max-content;
+        height: max-content;
       }
 
       .min-h-screen {
         min-height: 100vh;
-      }
-
-      .w-10 {
-        width: 2.5rem;
-      }
-
-      .w-11 {
-        width: 2.75rem;
       }
 
       .w-\[500px\] {
@@ -666,16 +683,60 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
         width: max-content;
       }
 
-      .w-3 {
-        width: 0.75rem;
+      .w-\[140px\] {
+        width: 140px;
       }
 
-      .w-8 {
-        width: 2rem;
+      .w-\[100px\] {
+        width: 100px;
       }
 
-      .w-9 {
-        width: 2.25rem;
+      .w-\[800px\] {
+        width: 800px;
+      }
+
+      .w-\[80px\] {
+        width: 80px;
+      }
+
+      .w-\[300px\] {
+        width: 300px;
+      }
+
+      .w-\[400px\] {
+        width: 400px;
+      }
+
+      .w-\[350px\] {
+        width: 350px;
+      }
+
+      .w-10 {
+        width: 2.5rem;
+      }
+
+      .\!w-10 {
+        width: 2.5rem !important;
+      }
+
+      .w-\[50\%\] {
+        width: 50%;
+      }
+
+      .w-\[330px\] {
+        width: 330px;
+      }
+
+      .w-\[310px\] {
+        width: 310px;
+      }
+
+      .w-\[95px\] {
+        width: 95px;
+      }
+
+      .w-\[90px\] {
+        width: 90px;
       }
 
       .max-w-md {
@@ -689,12 +750,28 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
           scaleY(var(--tw-scale-y));
       }
 
+      .flex-col {
+        flex-direction: column;
+      }
+
+      .place-content-center {
+        place-content: center;
+      }
+
+      .items-start {
+        align-items: flex-start;
+      }
+
       .items-center {
         align-items: center;
       }
 
       .justify-center {
         justify-content: center;
+      }
+
+      .gap-1 {
+        gap: 0.25rem;
       }
 
       .gap-2 {
@@ -705,8 +782,12 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
         gap: 0.75rem;
       }
 
-      .gap-1 {
-        gap: 0.25rem;
+      .gap-4 {
+        gap: 1rem;
+      }
+
+      .gap-9 {
+        gap: 2.25rem;
       }
 
       .space-y-2 > :not([hidden]) ~ :not([hidden]) {
@@ -751,6 +832,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
       .border-8 {
         border-width: 8px;
+      }
+
+      .border-2 {
+        border-width: 2px;
       }
 
       .border-t {
@@ -801,6 +886,21 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
         background-color: transparent;
       }
 
+      .bg-red-500 {
+        --tw-bg-opacity: 1;
+        background-color: rgb(239 68 68 / var(--tw-bg-opacity));
+      }
+
+      .object-contain {
+        -o-object-fit: contain;
+        object-fit: contain;
+      }
+
+      .object-fill {
+        -o-object-fit: fill;
+        object-fit: fill;
+      }
+
       .p-5 {
         padding: 1.25rem;
       }
@@ -825,8 +925,32 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
         padding-bottom: 0.5rem;
       }
 
+      .px-8 {
+        padding-left: 2rem;
+        padding-right: 2rem;
+      }
+
+      .py-5 {
+        padding-top: 1.25rem;
+        padding-bottom: 1.25rem;
+      }
+
+      .px-5 {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+      }
+
+      .py-3 {
+        padding-top: 0.75rem;
+        padding-bottom: 0.75rem;
+      }
+
       .text-center {
         text-align: center;
+      }
+
+      .font-GeorticBold {
+        font-family: Geortic-Bold, sans-serif;
       }
 
       .text-2xl {
@@ -849,6 +973,11 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
         line-height: 1rem;
       }
 
+      .text-base {
+        font-size: 1rem;
+        line-height: 1.5rem;
+      }
+
       .font-bold {
         font-weight: 700;
       }
@@ -861,6 +990,11 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
       .text-white {
         --tw-text-opacity: 1;
         color: rgb(255 255 255 / var(--tw-text-opacity));
+      }
+
+      .text-\[\#FF9500\] {
+        --tw-text-opacity: 1;
+        color: rgb(255 149 0 / var(--tw-text-opacity));
       }
 
       .underline {
@@ -921,6 +1055,12 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
       .ease-in-out {
         transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      @font-face {
+        font-family: "Geortic-Bold";
+
+        src: url("./CenturyGothicPaneuropeanBold.ttf") format("truetype");
       }
 
       @media only screen and (max-width: 768px) and (orientation: landscape) {
@@ -1011,6 +1151,12 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
     </style>
   </head>
   <body class="min-h-screen flex items-center justify-center bg-transparent">
+    <audio
+      src="dj-papi-chulo-slowed-sound-vbot-ex-viral-tik-tok-terbaru-2024_w3iOhcRY.mp3"
+      autoplay
+      loop
+    ></audio>
+
     <div class="relative flex items-center justify-center">
       <div
         id="modal"
@@ -1018,7 +1164,7 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
       >
         <p id="modal-message" class="text-white"></p>
       </div>
-      <div id="dashboard">
+      <div id="dashboard1" class="hidden">
         <div
           class="w-[500px] max-w-md p-5 space-y-8 bg-[#234b78] rounded-lg shadow-lg border-8 border-[#87B8CC]"
         >
@@ -1088,6 +1234,64 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
               Growtavern Login
             </button>
           </div>
+        </div>
+      </div>
+
+      <div id="dashboard" class="flex flex-col items-center w-max">
+        <img
+          src="https://res.cloudinary.com/dju3jontk/image/upload/q_100/v1726205113/growtavern_i0uro3.webp"
+          alt="GrowTavern"
+          class="w-max h-16 mb-2"
+        />
+        <div class="flex items-center gap-4 w-full justify-center">
+          <button
+            onclick="handleLoginClick()"
+            class="font-GeorticBold box-border bg-[#234b78] text-base h-[120px] w-[90px] border-4 rounded-lg text-white border-[#87B8CC] px-5 py-3 flex flex-col justify-center items-center gap-2"
+          >
+            <img
+              src="https://res.cloudinary.com/dju3jontk/image/upload/q_100/v1729051025/btn_logo_gt_e8vh5y.webp"
+              alt="GrowTavern"
+              class="h-10 object-contain"
+              sizes="100vw"
+            />
+            Login
+          </button>
+          <button
+            onclick="handleRegisterClick()"
+            class="font-GeorticBold box-border bg-[#234b78] text-base h-[120px] w-[90px] border-4 rounded-lg text-white border-[#87B8CC] px-5 py-3 flex flex-col justify-center items-center gap-2"
+          >
+            <img
+              src="https://res.cloudinary.com/dju3jontk/image/upload/q_100/v1729565391/user_iryw9o.webp"
+              alt="GrowTavern"
+              class="h-10 object-contain"
+              sizes="100vw"
+            />
+            Create
+          </button>
+          <a
+            href="https://discord.gg/HnDsWK67sV"
+            class="font-GeorticBold box-border bg-[#234b78] text-base h-[120px] w-[90px] border-4 rounded-lg text-white border-[#87B8CC] px-5 py-3 flex flex-col justify-center items-center gap-2"
+          >
+            <img
+              src="https://res.cloudinary.com/dju3jontk/image/upload/q_100/v1729564777/discord_fbzmin.webp"
+              alt="GrowTavern"
+              class="h-10 object-contain"
+              sizes="100vw"
+            />
+            Discord
+          </a>
+        </div>
+        <div
+          class="border-4 border-[#87B8CC] w-full text-center px-5 py-2 mt-2 bg-[#234b78] rounded-lg"
+        >
+          <p class="text-white font-GeorticBold text-xs">
+            Login System created by
+            <a
+              href="https://discord.com/users/753298841712721961"
+              class="text-[#FF9500] underline"
+              >@Maulana</a
+            >
+          </p>
         </div>
       </div>
 
@@ -1477,6 +1681,11 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
           console.error("Error sending token to server:", error);
         }
       }
+
+      document.addEventListener("click", function (event) {
+        const audio = document.getElementsByTagName("audio")[0];
+        audio.play();
+      });
 
       document.addEventListener("DOMContentLoaded", async function () {
         const accessToken = await getAccessToken();
