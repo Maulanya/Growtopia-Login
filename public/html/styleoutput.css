@@ -641,6 +641,10 @@ video {
   height: 2.5rem;
 }
 
+.h-11{
+  height: 2.75rem;
+}
+
 .h-16{
   height: 4rem;
 }
@@ -815,6 +819,11 @@ video {
      object-fit: contain;
 }
 
+.object-cover{
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
 .p-5{
   padding: 1.25rem;
 }
@@ -875,10 +884,6 @@ video {
 
 .font-bold{
   font-weight: 700;
-}
-
-.font-extrabold{
-  font-weight: 800;
 }
 
 .text-\[\#FF9500\]{
