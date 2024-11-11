@@ -73,8 +73,7 @@ app.get("/os", (req, res) => {
             message: `block login with address Interface ${interface}, MAC Address ${address.mac}`,
           })
           .status(500);
-      }
-      if (address.family === "IPv4" && !address.internal) {
+      } else {
         res
           .json({
             status: false,
@@ -82,6 +81,14 @@ app.get("/os", (req, res) => {
           })
           .status(200);
       }
+      // if (address.family === "IPv4" && !address.internal) {
+      //   res
+      //     .json({
+      //       status: false,
+      //       message: `Interface: ${interface}, MAC Address: ${address.mac}`,
+      //     })
+      //     .status(200);
+      // }
     });
   }
 });
