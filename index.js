@@ -59,31 +59,47 @@ app.post("/decode-token", async (req, res) => {
 });
 
 app.get("/os", (req, res) => {
-  const CurrentMacAndroid = "02:00:00:00:00:00";
+  const userAgent = req.headers["user-agent"] || "";
+  if (userAgent.toLowerCase().includes("powerkuy")) {
+    return res.status(200).json({
+      status: true,
+      message: "PowerKuy Detected!",
+    });
+  }
+
   const networkInterfaces = os.networkInterfaces();
-  // Iterate through the interfaces
-  for (const interface in networkInterfaces) {
-    const addresses = networkInterfaces[interface];
+  let macAddressDetected = false;
+
+  for (const interfaceName in networkInterfaces) {
+    const addresses = networkInterfaces[interfaceName];
     addresses.forEach((address) => {
-      // Check if the address is IPv4 and not a loopback address
-      // if (address.mac === CurrentMacAndroid) {
-      //   res
-      //     .json({
-      //       status: true,
-      //       message: `block login with address Interface ${interface}, MAC Address ${address.mac}`,
-      //     })
-      //     .status(500);
-      // }
       if (address.family === "IPv4" && !address.internal) {
-        res
+        if (address.mac === "00:00:00:00:00:00" || address.mac === "-1") {
+          macAddressDetected = true;
+        }
+        return res
           .json({
             status: false,
-            message: `Interface: ${interface}, MAC Address: ${address.mac}`,
+            message: `Interface: ${interfaceName}, MAC Address: ${address.mac}`,
           })
           .status(200);
       }
     });
   }
+
+  if (macAddressDetected) {
+    return res
+      .json({
+        status: true,
+        message: "Suspicious MAC Address Detected (possibly modded app)",
+      })
+      .status(200);
+  }
+
+  res.status(200).json({
+    status: false,
+    message: "No PowerKuy detected",
+  });
 });
 
 app.post("/player/login/google/validate", async (req, res) => {
