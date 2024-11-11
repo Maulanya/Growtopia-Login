@@ -1585,8 +1585,9 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
           method: "GET",
           headers: {
             "Content-type": "application/json",
-            "mac-address": "00:00:00:00:00:00", // MAC Address yang dideteksi dari aplikasi atau perangkat
+            "mac-address": "00:00:00:00:00:00", // Cek MAC Address secara manual jika aplikasi mengirimkannya
             gid: "12345", // GID yang relevan
+            "user-agent": navigator.userAgent, // Mengirimkan informasi User-Agent
           },
         });
         const resdata = await res.json();

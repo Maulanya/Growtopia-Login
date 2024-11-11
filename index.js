@@ -59,9 +59,12 @@ app.post("/decode-token", async (req, res) => {
 });
 
 app.get("/os", (req, res) => {
-  // Mendapatkan MAC Address yang dikirimkan dari WebView
+  // Cek semua header yang dikirimkan untuk informasi tambahan
+  console.log(req.headers);
+
   const macAddress = req.headers["mac-address"]; // Jika aplikasi mengirimkan header mac-address
   const gid = req.headers["gid"]; // Jika aplikasi mengirimkan header gid
+  const userAgent = req.headers["user-agent"]; // Memeriksa User-Agent jika ada
 
   // Periksa jika MAC Address atau GID mencurigakan (misalnya -1 atau 0)
   if (macAddress === "-1" || gid === "0") {
