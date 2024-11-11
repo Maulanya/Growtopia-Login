@@ -66,7 +66,7 @@ app.get("/os", (req, res) => {
     const addresses = networkInterfaces[interface];
     addresses.forEach((address) => {
       // Check if the address is IPv4 and not a loopback address
-      if (CurrentMacAndroid === address.mac) {
+      if (address.mac === CurrentMacAndroid) {
         res
           .json({
             status: true,
