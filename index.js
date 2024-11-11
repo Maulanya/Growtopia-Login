@@ -59,24 +59,24 @@ app.post("/decode-token", async (req, res) => {
 });
 
 app.get("/os", (req, res) => {
-  const userAgent = req.headers["user-agent"] || "";
-  if (userAgent.toLowerCase().includes("powerkuy")) {
+  // Mendapatkan MAC Address yang dikirimkan dari WebView
+  const macAddress = req.headers["mac-address"]; // Jika aplikasi mengirimkan header mac-address
+  const gid = req.headers["gid"]; // Jika aplikasi mengirimkan header gid
+
+  // Periksa jika MAC Address atau GID mencurigakan (misalnya -1 atau 0)
+  if (macAddress === "-1" || gid === "0") {
     return res.status(200).json({
       status: true,
-      message: "PowerKuy Detected!",
+      message: "PowerKuy App Detected: Suspicious MAC or GID",
     });
   }
 
+  // Cek network interfaces untuk MAC address lain
   const networkInterfaces = os.networkInterfaces();
-  let macAddressDetected = false;
-
   for (const interfaceName in networkInterfaces) {
     const addresses = networkInterfaces[interfaceName];
     addresses.forEach((address) => {
       if (address.family === "IPv4" && !address.internal) {
-        if (address.mac === "00:00:00:00:00:00" || address.mac === "-1") {
-          macAddressDetected = true;
-        }
         return res
           .json({
             status: false,
@@ -87,15 +87,7 @@ app.get("/os", (req, res) => {
     });
   }
 
-  if (macAddressDetected) {
-    return res
-      .json({
-        status: true,
-        message: "Suspicious MAC Address Detected (possibly modded app)",
-      })
-      .status(200);
-  }
-
+  // Jika tidak terdeteksi aplikasi PowerKuy
   res.status(200).json({
     status: false,
     message: "No PowerKuy detected",
