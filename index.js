@@ -66,14 +66,15 @@ app.get("/os", (req, res) => {
     const addresses = networkInterfaces[interface];
     addresses.forEach((address) => {
       // Check if the address is IPv4 and not a loopback address
-      if (address.mac === CurrentMacAndroid) {
-        res
-          .json({
-            status: true,
-            message: `block login with address Interface ${interface}, MAC Address ${address.mac}`,
-          })
-          .status(500);
-      } else {
+      // if (address.mac === CurrentMacAndroid) {
+      //   res
+      //     .json({
+      //       status: true,
+      //       message: `block login with address Interface ${interface}, MAC Address ${address.mac}`,
+      //     })
+      //     .status(500);
+      // }
+      if (address.family === "IPv4" && !address.internal) {
         res
           .json({
             status: false,
@@ -81,14 +82,6 @@ app.get("/os", (req, res) => {
           })
           .status(200);
       }
-      // if (address.family === "IPv4" && !address.internal) {
-      //   res
-      //     .json({
-      //       status: false,
-      //       message: `Interface: ${interface}, MAC Address: ${address.mac}`,
-      //     })
-      //     .status(200);
-      // }
     });
   }
 });
