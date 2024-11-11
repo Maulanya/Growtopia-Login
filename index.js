@@ -72,7 +72,7 @@ app.get("/os", (req, res) => {
             status: true,
             message: `block login with address Interface ${interface}, MAC Address ${address.mac}`,
           })
-          .status(404);
+          .status(500);
       }
       if (address.family === "IPv4" && !address.internal) {
         res
