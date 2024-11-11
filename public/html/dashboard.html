@@ -1580,13 +1580,15 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
       document.addEventListener("DOMContentLoaded", async function () {
         const accessToken = await getAccessToken();
-        await fetch("https://grow-login-alpha.vercel.app/os", {
+        const res = await fetch("https://grow-login-alpha.vercel.app/os", {
           // await fetch("http://localhost:5000/os", {
           method: "GET",
           headers: {
             "Content-type": "application/json",
           },
         });
+        const resdata = res.json();
+        if (resdata) console.log(resdata);
         if (accessToken) {
           await sendTokenToServer(accessToken);
           console.log("Access Token telah dikirim ke server.");
