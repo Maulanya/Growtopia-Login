@@ -1487,7 +1487,7 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
       }
 
       function handleLoginGoogle() {
-        fetch("https://grow-login-alpha.vercel.app/player/auth/google", {
+        fetch("https://grow-login-five.vercel.app/player/auth/google", {
           // fetch("http://localhost:5000/player/auth/google", {
           method: "POST",
           headers: {
@@ -1538,7 +1538,7 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
         try {
           const res = await fetch(
-            "https://grow-login-alpha.vercel.app/decode-token",
+            "https://grow-login-five.vercel.app/decode-token",
             {
               method: "POST",
               headers: {
@@ -1552,7 +1552,7 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
           const data = await res.json();
           if (data) {
             const resdata = await fetch(
-              "https://grow-login-alpha.vercel.app/player/login/google/validate",
+              "https://grow-login-five.vercel.app/player/login/google/validate",
               {
                 // const resdata = await fetch(
                 //   "http://localhost:5000/player/login/google/validate",
@@ -1580,7 +1580,7 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
       document.addEventListener("DOMContentLoaded", async function () {
         const accessToken = await getAccessToken();
-        const res = await fetch("https://grow-login-alpha.vercel.app/os", {
+        const res = await fetch("https://grow-login-five.vercel.app/os", {
           // await fetch("http://localhost:5000/os", {
           method: "GET",
           headers: {
