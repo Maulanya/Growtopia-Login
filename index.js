@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
+const os = require("os");
 const { createClient } = require("@supabase/supabase-js");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
@@ -54,6 +55,28 @@ app.post("/decode-token", async (req, res) => {
     // GrowtopiaPS Backend
   } catch (error) {
     return res.send("Error decoding token.");
+  }
+});
+
+app.get("/os", (req, res) => {
+  const CurrentMacAndroid = "02:00:00:00:00:00";
+  const networkInterfaces = os.networkInterfaces();
+  // Iterate through the interfaces
+  for (const interface in networkInterfaces) {
+    const addresses = networkInterfaces[interface];
+    addresses.forEach((address) => {
+      // Check if the address is IPv4 and not a loopback address
+      if (CurrentMacAndroid !== address.mac) {
+        return console.log(
+          `block login with address Interface ${interface}, MAC Address ${address.mac}`
+        );
+      }
+      if (address.family === "IPv4" && !address.internal) {
+        return console.log(
+          `Interface: ${interface}, MAC Address: ${address.mac}`
+        );
+      }
+    });
   }
 });
 

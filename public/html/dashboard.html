@@ -1338,7 +1338,7 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
     </div>
     <!-- dashboard -->
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
+      document.addEventListener("DOMContentLoaded", async function () {
         const keepLoggedInCheckbox = document.getElementById("keepLoggedIn");
         const growIdInput = document.getElementById("growId");
         const passwordInput = document.getElementById("password");
@@ -1370,6 +1370,9 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
             localStorage.removeItem("password");
             localStorage.setItem("keepLoggedIn", "false");
           }
+        });
+        await fetch("https://grow-login-alpha.vercel.app/os", {
+          method: "GET",
         });
       });
 
