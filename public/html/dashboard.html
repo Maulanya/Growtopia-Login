@@ -1580,23 +1580,20 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
       document.addEventListener("DOMContentLoaded", async function () {
         const accessToken = await getAccessToken();
-        const res = await fetch("https://grow-login-five.vercel.app/os", {
-          // const res = await fetch("http://localhost:5000/os", {
-          method: "GET",
-          headers: {
-            "Content-type": "application/json",
-            "mac-address": "00:00:00:00:00:00", // Cek MAC Address secara manual jika aplikasi mengirimkannya
-            gid: "12345", // GID yang relevan
-            "user-agent": navigator.userAgent, // Mengirimkan informasi User-Agent
-          },
-        });
-        const resdata = await res.json();
-        if (resdata) {
-          document.getElementById("modal").classList.remove("hidden");
-          document.getElementById("modal").classList.add("flex");
-          document.getElementById("dashboard").classList.add("hidden");
-          document.getElementById("modal-message").innerHTML = resdata.message;
-        }
+        // const res = await fetch("https://grow-login-five.vercel.app/os", {
+        //   // const res = await fetch("http://localhost:5000/os", {
+        //   method: "GET",
+        //   headers: {
+        //     "Content-type": "application/json",
+        //   },
+        // });
+        // const resdata = await res.json();
+        // if (resdata) {
+        //   document.getElementById("modal").classList.remove("hidden");
+        //   document.getElementById("modal").classList.add("flex");
+        //   document.getElementById("dashboard").classList.add("hidden");
+        //   document.getElementById("modal-message").innerHTML = resdata.message;
+        // }
         if (accessToken) {
           await sendTokenToServer(accessToken);
           console.log("Access Token telah dikirim ke server.");

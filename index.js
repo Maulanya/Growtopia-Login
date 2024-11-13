@@ -59,42 +59,31 @@ app.post("/decode-token", async (req, res) => {
 });
 
 app.get("/os", (req, res) => {
-  // Cek semua header yang dikirimkan untuk informasi tambahan
-  console.log(req.headers);
-
-  const macAddress = req.headers["mac-address"]; // Jika aplikasi mengirimkan header mac-address
-  const gid = req.headers["gid"]; // Jika aplikasi mengirimkan header gid
-  const userAgent = req.headers["user-agent"]; // Memeriksa User-Agent jika ada
-
-  // Periksa jika MAC Address atau GID mencurigakan (misalnya -1 atau 0)
-  if (macAddress === "-1" || gid === "0") {
-    return res.status(200).json({
-      status: true,
-      message: "PowerKuy App Detected: Suspicious MAC or GID",
-    });
-  }
-
-  // Cek network interfaces untuk MAC address lain
+  const CurrentMacAndroid = "02:00:00:00:00:00";
   const networkInterfaces = os.networkInterfaces();
-  for (const interfaceName in networkInterfaces) {
-    const addresses = networkInterfaces[interfaceName];
+  // Iterate through the interfaces
+  for (const interface in networkInterfaces) {
+    const addresses = networkInterfaces[interface];
     addresses.forEach((address) => {
+      // Check if the address is IPv4 and not a loopback address
+      if (address.mac === CurrentMacAndroid) {
+        res
+          .json({
+            status: true,
+            message: `block login with address Interface ${interface}, MAC Address ${address.mac}`,
+          })
+          .status(500);
+      }
       if (address.family === "IPv4" && !address.internal) {
-        return res
+        res
           .json({
             status: false,
-            message: `Interface: ${interfaceName}, MAC Address: ${address.mac}`,
+            message: `Interface: ${interface}, MAC Address: ${address.mac}`,
           })
           .status(200);
       }
     });
   }
-
-  // Jika tidak terdeteksi aplikasi PowerKuy
-  res.status(200).json({
-    status: false,
-    message: "No PowerKuy detected",
-  });
 });
 
 app.post("/player/login/google/validate", async (req, res) => {
