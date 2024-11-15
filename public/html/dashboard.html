@@ -583,6 +583,14 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
         border-width: 0;
       }
 
+      .visible {
+        visibility: visible;
+      }
+
+      .collapse {
+        visibility: collapse;
+      }
+
       .absolute {
         position: absolute;
       }
@@ -624,8 +632,20 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
         box-sizing: border-box;
       }
 
+      .block {
+        display: block;
+      }
+
       .flex {
         display: flex;
+      }
+
+      .table {
+        display: table;
+      }
+
+      .contents {
+        display: contents;
       }
 
       .hidden {
@@ -673,11 +693,19 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
         max-width: 28rem;
       }
 
+      .border-collapse {
+        border-collapse: collapse;
+      }
+
       .transform {
         transform: translate(var(--tw-translate-x), var(--tw-translate-y))
           rotate(var(--tw-rotate)) skewX(var(--tw-skew-x))
           skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x))
           scaleY(var(--tw-scale-y));
+      }
+
+      .resize {
+        resize: both;
       }
 
       .flex-col {
@@ -914,6 +942,16 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
           var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
       }
 
+      .outline {
+        outline-style: solid;
+      }
+
+      .filter {
+        filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast)
+          var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert)
+          var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+      }
+
       .transition {
         transition-property: color, background-color, border-color,
           text-decoration-color, fill, stroke, opacity, box-shadow, transform,
@@ -947,21 +985,21 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
       }
 
       @media only screen and (max-width: 768px) and (orientation: landscape) {
-        button.portrait\:flex {
+        div.portrait\:flex {
           display: none;
         }
 
-        p.landscape\:block {
+        div.landscape\:block {
           display: block;
         }
       }
 
       @media only screen and (min-width: 769px) {
-        button.portrait\:flex {
+        div.portrait\:flex {
           display: flex;
         }
 
-        p.landscape\:block {
+        div.landscape\:block {
           display: none;
         }
       }
@@ -1176,6 +1214,22 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
               />
               Discord
             </a>
+          </div>
+          <div
+            class="border-4 border-[#87B8CC] w-full flex justify-center text-center px-5 py-2 mt-2 bg-[#234b78] rounded-lg landscape:hidden portrait:flex"
+          >
+            <button
+              class="text-white text-xs flex items-center gap-2 login-google"
+              onclick="handleLoginGoogle()"
+            >
+              <img
+                src="https://res.cloudinary.com/dju3jontk/image/upload/q_100/v1728543553/search_pzvyho.webp"
+                alt="GrowTavern"
+                class="h-5 object-fit"
+                sizes="100vw"
+              />
+              Continue with Google
+            </button>
           </div>
           <div
             class="border-4 border-[#87B8CC] w-full text-center px-5 py-2 mt-2 bg-[#234b78] rounded-lg"

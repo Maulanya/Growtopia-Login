@@ -641,10 +641,6 @@ video {
   height: 2.5rem;
 }
 
-.h-11{
-  height: 2.75rem;
-}
-
 .h-16{
   height: 4rem;
 }
@@ -819,11 +815,6 @@ video {
      object-fit: contain;
 }
 
-.object-cover{
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-
 .p-5{
   padding: 1.25rem;
 }
@@ -962,21 +953,21 @@ body {
 }
 
 @media only screen and (max-width: 768px) and (orientation: landscape) {
-  button.portrait\:flex {
+  div.portrait\:flex {
     display: none;
   }
 
-  p.landscape\:block {
+  div.landscape\:block {
     display: block;
   }
 }
 
 @media only screen and (min-width: 769px) {
-  button.portrait\:flex {
+  div.portrait\:flex {
     display: flex;
   }
 
-  p.landscape\:block {
+  div.landscape\:block {
     display: none;
   }
 }
