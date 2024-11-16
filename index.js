@@ -103,10 +103,18 @@ app.post("/player/login/google/validate", async (req, res) => {
     }
   );
   const requestdata = await resdata.json();
-  return res.json({
-    growId: requestdata.data.name,
-    password: requestdata.data.pass,
-  });
+  if (requestdata.type === "success") {
+    return res.json({
+      type: "success",
+      growId: requestdata.data.name,
+      password: requestdata.data.pass,
+    });
+  } else {
+    return res.json({
+      type: "error",
+      message: requestdata.message,
+    });
+  }
   // if (requestdata.type === "success") {
   //   // await fetch("http://localhost:5000/player/growid/login/validate", {
   //   await fetch(

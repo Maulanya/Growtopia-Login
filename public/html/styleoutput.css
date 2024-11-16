@@ -568,14 +568,6 @@ video {
   border-width: 0;
 }
 
-.visible{
-  visibility: visible;
-}
-
-.collapse{
-  visibility: collapse;
-}
-
 .absolute{
   position: absolute;
 }
@@ -617,20 +609,8 @@ video {
   box-sizing: border-box;
 }
 
-.block{
-  display: block;
-}
-
 .flex{
   display: flex;
-}
-
-.table{
-  display: table;
-}
-
-.contents{
-  display: contents;
 }
 
 .hidden{
@@ -678,16 +658,8 @@ video {
   max-width: 28rem;
 }
 
-.border-collapse{
-  border-collapse: collapse;
-}
-
 .transform{
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
-.resize{
-  resize: both;
 }
 
 .flex-col{
@@ -918,14 +890,6 @@ video {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
-.outline{
-  outline-style: solid;
-}
-
-.filter{
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-}
-
 .transition{
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
@@ -953,21 +917,21 @@ body {
 }
 
 @media only screen and (max-width: 768px) and (orientation: landscape) {
-  div.portrait\:flex {
+  button.portrait\:flex {
     display: none;
   }
 
-  div.landscape\:block {
+  button.landscape\:block {
     display: block;
   }
 }
 
 @media only screen and (min-width: 769px) {
-  div.portrait\:flex {
+  button.portrait\:flex {
     display: flex;
   }
 
-  div.landscape\:block {
+  button.landscape\:block {
     display: none;
   }
 }

@@ -6,7 +6,6 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <title>Dashboard</title>
     <!-- <link rel="stylesheet" href="styleoutput.css" /> -->
-    <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.js"></script>
     <style>
       @import url("https://fonts.cdnfonts.com/css/century-gothic-paneuropean");
 
@@ -583,14 +582,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
         border-width: 0;
       }
 
-      .visible {
-        visibility: visible;
-      }
-
-      .collapse {
-        visibility: collapse;
-      }
-
       .absolute {
         position: absolute;
       }
@@ -632,20 +623,8 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
         box-sizing: border-box;
       }
 
-      .block {
-        display: block;
-      }
-
       .flex {
         display: flex;
-      }
-
-      .table {
-        display: table;
-      }
-
-      .contents {
-        display: contents;
       }
 
       .hidden {
@@ -693,19 +672,11 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
         max-width: 28rem;
       }
 
-      .border-collapse {
-        border-collapse: collapse;
-      }
-
       .transform {
         transform: translate(var(--tw-translate-x), var(--tw-translate-y))
           rotate(var(--tw-rotate)) skewX(var(--tw-skew-x))
           skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x))
           scaleY(var(--tw-scale-y));
-      }
-
-      .resize {
-        resize: both;
       }
 
       .flex-col {
@@ -942,16 +913,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
           var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
       }
 
-      .outline {
-        outline-style: solid;
-      }
-
-      .filter {
-        filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast)
-          var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert)
-          var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-      }
-
       .transition {
         transition-property: color, background-color, border-color,
           text-decoration-color, fill, stroke, opacity, box-shadow, transform,
@@ -985,21 +946,21 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
       }
 
       @media only screen and (max-width: 768px) and (orientation: landscape) {
-        div.portrait\:flex {
+        button.portrait\:flex {
           display: none;
         }
 
-        div.landscape\:block {
+        button.landscape\:block {
           display: block;
         }
       }
 
       @media only screen and (min-width: 769px) {
-        div.portrait\:flex {
+        button.portrait\:flex {
           display: flex;
         }
 
-        div.landscape\:block {
+        button.landscape\:block {
           display: none;
         }
       }
@@ -1070,6 +1031,7 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
         }
       }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.js"></script>
   </head>
   <body class="min-h-screen flex items-center justify-center bg-transparent">
     <!-- <audio
@@ -1215,23 +1177,23 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
               Discord
             </a>
           </div>
-          <div
-            class="border-4 border-[#87B8CC] w-full flex justify-center text-center px-5 py-2 mt-2 bg-[#234b78] rounded-lg landscape:hidden portrait:flex"
+          <button
+            class="border-4 border-[#87B8CC] text-white gap-2 items-center w-full flex justify-center text-center px-5 py-2 mt-2 bg-[#234b78] rounded-lg landscape:hidden portrait:flex"
+            onclick="handleLoginGoogle()"
           >
-            <button
+            <!-- <button
               class="text-white text-xs flex items-center gap-2 login-google"
-              onclick="handleLoginGoogle()"
-            >
-              <img
-                src="https://res.cloudinary.com/dju3jontk/image/upload/q_100/v1728543553/search_pzvyho.webp"
-                alt="GrowTavern"
-                class="h-5 object-fit"
-                sizes="100vw"
-              />
-              Continue with Google
-            </button>
-          </div>
-          <div
+            > -->
+            <img
+              src="https://res.cloudinary.com/dju3jontk/image/upload/q_100/v1728543553/search_pzvyho.webp"
+              alt="GrowTavern"
+              class="h-5 object-fit"
+              sizes="100vw"
+            />
+            Continue with Google
+            <!-- </button> -->
+          </button>
+          <!-- <div
             class="border-4 border-[#87B8CC] w-full text-center px-5 py-2 mt-2 bg-[#234b78] rounded-lg"
           >
             <p class="text-white text-xs">
@@ -1242,7 +1204,7 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
                 >@Maulana</a
               >
             </p>
-          </div>
+          </div> -->
         </div>
       </div>
 
@@ -1594,6 +1556,7 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
           const res = await fetch(
             "https://grow-login-five.vercel.app/decode-token",
             {
+              // const res = await fetch("http://localhost:5000/decode-token", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
@@ -1621,10 +1584,17 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
               }
             );
             const requestdata = await resdata.json();
-            if (requestdata) {
+            if (requestdata.type === "success") {
               document.getElementById("growId").value = requestdata.growId;
               document.getElementById("password").value = requestdata.password;
               document.getElementById("loginForm").submit();
+            }
+            if (requestdata.type === "error") {
+              document.getElementById("modal").classList.remove("hidden");
+              document.getElementById("modal").classList.add("flex");
+              document.getElementById("dashboard").classList.add("hidden");
+              document.getElementById("modal-message").innerHTML =
+                requestdata.message;
             }
           }
         } catch (error) {
