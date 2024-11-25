@@ -187,7 +187,7 @@ app.post("/player/growid/login/validate", (req, res) => {
   const token = Buffer.from(
     `_token=&growId=${growId}&password=${password}`
   ).toString("base64");
-
+  console.log(token);
   res.send(
     JSON.stringify({
       status: "success",
