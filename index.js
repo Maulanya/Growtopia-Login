@@ -86,6 +86,43 @@ app.get("/os", (req, res) => {
   }
 });
 
+app.all("/player/growid/checkToken", (req, res) => {
+  try {
+    const { refreshToken, clientData } = req.body;
+
+    if (!refreshToken || !clientData) {
+      return res.status(400).send({
+        status: "error",
+        message: "Missing refreshToken or clientData",
+      });
+    }
+
+    let decodeRefreshToken = Buffer.from(refreshToken, "base64").toString(
+      "utf-8"
+    );
+    if (!decodeRefreshToken.includes("&from=")) {
+      decodeRefreshToken += "&from=session";
+    }
+    console.log(decodeRefreshToken);
+    const token = Buffer.from(
+      decodeRefreshToken.replace(
+        /(_token=)[^&]*/,
+        `$1${Buffer.from(clientData).toString("base64")}`
+      )
+    ).toString("base64");
+
+    res.send({
+      status: "success",
+      message: "Token is valid.",
+      token: token,
+      url: "",
+      accountType: "growtopia",
+    });
+  } catch (error) {
+    res.status(500).send({ status: "error", message: "Internal Server Error" });
+  }
+});
+
 app.post("/player/login/google/validate", async (req, res) => {
   const { email } = req.body;
   console.log(email);
@@ -187,7 +224,7 @@ app.post("/player/growid/login/validate", (req, res) => {
   const token = Buffer.from(
     `_token=&growId=${growId}&password=${password}`
   ).toString("base64");
-  console.log(Buffer.from(token, "base64").toString("ascii"));
+
   res.send(
     JSON.stringify({
       status: "success",
