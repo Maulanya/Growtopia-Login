@@ -255,10 +255,17 @@ app.all("/player/growid/checkToken", (req, res) => {
 });
 
 app.post("/player/growid/login/validate", (req, res) => {
-  const growId = req.body.growId;
-  const password = req.body.password;
+  // const growId = req.body.growId;
+  // const password = req.body.password;
   const { refreshToken, clientData } = req.body;
-
+  console.log(refreshToken, clientData);
+  if (!refreshToken || !clientData) {
+    return res.status(400).send({
+      status: "error",
+      message: "Missing refreshToken or clientData",
+    });
+  }
+  // decode decodeRefreshToken
   let decodeRefreshToken = Buffer.from(refreshToken, "base64").toString(
     "utf-8"
   );
