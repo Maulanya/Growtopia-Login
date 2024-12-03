@@ -257,10 +257,25 @@ app.all("/player/growid/checkToken", (req, res) => {
 app.post("/player/growid/login/validate", (req, res) => {
   const growId = req.body.growId;
   const password = req.body.password;
+  const { refreshToken, clientData } = req.body;
 
+  let decodeRefreshToken = Buffer.from(refreshToken, "base64").toString(
+    "utf-8"
+  );
+  if (!decodeRefreshToken.includes("&from=")) {
+    decodeRefreshToken += "&from=session";
+  }
+  console.log(decodeRefreshToken);
   const token = Buffer.from(
-    `_token=&growId=${growId}&password=${password}`
+    decodeRefreshToken.replace(
+      /(_token=)[^&]*/,
+      `$1${Buffer.from(clientData).toString("base64")}`
+    )
   ).toString("base64");
+
+  // const token = Buffer.from(
+  //   `_token=&growId=${growId}&password=${password}`
+  // ).toString("base64");
 
   res.send(
     JSON.stringify({
