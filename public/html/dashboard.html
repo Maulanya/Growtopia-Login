@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <title>Dashboard</title>
-    <!-- <link rel="stylesheet" href="styleoutput.css" /> -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="styleoutput.css" />
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.js"></script>
+    <!-- npx tailwindcss -i ./public/html/style.css -o ./public/html/styleoutput.css --watch -->
     <style>
       @import url("https://fonts.cdnfonts.com/css/century-gothic-paneuropean");
 
@@ -668,6 +671,34 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
         width: max-content;
       }
 
+      .w-96 {
+        width: 24rem;
+      }
+
+      .w-52 {
+        width: 13rem;
+      }
+
+      .w-20 {
+        width: 5rem;
+      }
+
+      .w-60 {
+        width: 15rem;
+      }
+
+      .w-\[270px\] {
+        width: 270px;
+      }
+
+      .w-\[300px\] {
+        width: 300px;
+      }
+
+      .w-\[310px\] {
+        width: 310px;
+      }
+
       .max-w-md {
         max-width: 28rem;
       }
@@ -1031,7 +1062,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
         }
       }
     </style>
-    <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.js"></script>
   </head>
   <body class="min-h-screen flex items-center justify-center bg-transparent">
     <!-- <audio
@@ -1122,12 +1152,16 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
       <div id="dashboard">
         <div class="flex flex-col items-center w-max">
           <img
+            data-aos="zoom-in"
+            data-aos-delay="200"
+            data-aos-anchor-placement="top-bottom"
             src="https://res.cloudinary.com/dju3jontk/image/upload/q_100/v1726205113/growtavern_i0uro3.webp"
             alt="GrowTavern"
-            class="w-max h-16 mb-2"
+            class="w-52 h-16 mb-2"
           />
           <div class="flex items-center gap-4 w-full justify-center">
             <button
+              data-aos="fade-up"
               onclick="handleLoginClick()"
               class="box-border bg-[#234b78] text-base h-[120px] w-[90px] border-4 rounded-lg text-white border-[#87B8CC] px-5 py-3 flex flex-col justify-center items-center gap-2"
             >
@@ -1152,6 +1186,8 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
               Create
             </button> -->
             <a
+              data-aos="fade-up"
+              data-aos-delay="300"
               href="https://growtavern.site"
               target="_blank"
               class="box-border bg-[#234b78] text-base h-[120px] w-[90px] border-4 rounded-lg text-white border-[#87B8CC] px-5 py-3 flex flex-col justify-center items-center gap-2"
@@ -1165,6 +1201,8 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
               Create
             </a>
             <a
+              data-aos="fade-up"
+              data-aos-delay="600"
               href="https://discord.gg/growtavern"
               class="box-border bg-[#234b78] text-base h-[120px] w-[90px] border-4 rounded-lg text-white border-[#87B8CC] px-5 py-3 flex flex-col justify-center items-center gap-2"
             >
@@ -1178,7 +1216,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
             </a>
           </div>
           <button
-            class="border-4 border-[#87B8CC] text-white gap-2 items-center w-full flex justify-center text-center px-5 py-2 mt-2 bg-[#234b78] rounded-lg landscape:hidden portrait:flex"
+            data-aos="zoom-in"
+            data-aos-delay="900"
+            data-aos-anchor-placement="top-bottom"
+            class="border-4 border-[#87B8CC] text-white gap-2 items-center w-[300px] flex justify-center text-center px-5 py-2 mt-2 bg-[#234b78] rounded-lg landscape:hidden portrait:flex"
             onclick="handleLoginGoogle()"
           >
             <!-- <button
@@ -1353,6 +1394,7 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
       </div>
     </div>
     <!-- dashboard -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", async function () {
         const keepLoggedInCheckbox = document.getElementById("keepLoggedIn");
@@ -1625,6 +1667,7 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
           console.log("Access Token tidak ditemukan di URL.");
         }
       });
+      AOS.init();
     </script>
   </body>
 </html>
